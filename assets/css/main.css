@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "ZZZ";
+    src: url("/fonts/zzz.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    font-family: "ZZZ", sans-serif;
+}
+body {
+    width: calc(100vw - (100vw - 100%));
+}
