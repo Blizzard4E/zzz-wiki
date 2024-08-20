@@ -1,0 +1,25 @@
+.animation-film-stripe-move-top {
+    animation: FilmStripMoveTop 10s linear infinite;
+}
+
+.animation-film-stripe-move-bottom {
+    animation: FilmStripMoveBottom 10s linear infinite;
+}
+
+@keyframes FilmStripMoveTop {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes FilmStripMoveBottom {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

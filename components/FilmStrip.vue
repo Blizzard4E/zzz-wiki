@@ -2,6 +2,11 @@
     <div
         class="relative overflow-x-clip z-10 flex w-[200vw]"
         style="background: url(/ui/film_strip_bg.png); background-size: 0.8vw"
+        :class="
+            top
+                ? `animation-film-stripe-move-top`
+                : 'animation-film-stripe-move-bottom'
+        "
         :style="{
             marginLeft: -offSet + 'vw',
         }"
