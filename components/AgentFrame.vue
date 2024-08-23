@@ -52,10 +52,10 @@
                 opacity: isSelected ? 0.45 : 0,
             }"
         >
-            <div class="mx-[2vw]">{{ agent.name }}</div>
-            <div class="mx-[2vw]">{{ agent.name }}</div>
-            <div class="mx-[2vw]">{{ agent.name }}</div>
-            <div class="mx-[2vw]">{{ agent.name }}</div>
+            <div class="mx-[6vw]">{{ agent.name }}</div>
+            <div class="mx-[6vw]">{{ agent.name }}</div>
+            <div class="mx-[6vw]">{{ agent.name }}</div>
+            <div class="mx-[6vw]">{{ agent.name }}</div>
         </div>
         <Button
             class="absolute bottom-[1vw] right-[1vw] z-40 text-xl"
