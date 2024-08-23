@@ -12,6 +12,14 @@ export const fakeAgents: Agent[] = [
             name: "Obol Squad",
             icon: "/placeholder_faction.png",
         },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
+        },
     },
     {
         id: 1,
@@ -25,6 +33,14 @@ export const fakeAgents: Agent[] = [
             id: 1,
             name: "Criminal Investigation Special Response Team",
             icon: "/placeholder_faction_1.png",
+        },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
         },
     },
     {
@@ -40,6 +56,14 @@ export const fakeAgents: Agent[] = [
             name: "Belobog Heavy Industries",
             icon: "/placeholder_faction_2.png",
         },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
+        },
     },
     {
         id: 3,
@@ -53,6 +77,14 @@ export const fakeAgents: Agent[] = [
             id: 3,
             name: "Victoria Housekeeping",
             icon: "/placeholder_faction_3.webp",
+        },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
         },
     },
     {
@@ -68,6 +100,14 @@ export const fakeAgents: Agent[] = [
             name: "Cunning Hares",
             icon: "/placeholder_faction_4.webp",
         },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
+        },
     },
     {
         id: 5,
@@ -81,6 +121,14 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Obol Squad",
             icon: "/placeholder_faction.png",
+        },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
         },
     },
     {
@@ -96,6 +144,14 @@ export const fakeAgents: Agent[] = [
             name: "Criminal Investigation Special Response Team",
             icon: "/placeholder_faction_1.png",
         },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
+        },
     },
     {
         id: 7,
@@ -109,6 +165,14 @@ export const fakeAgents: Agent[] = [
             id: 2,
             name: "Belobog Heavy Industries",
             icon: "/placeholder_faction_2.png",
+        },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
         },
     },
     {
@@ -124,6 +188,14 @@ export const fakeAgents: Agent[] = [
             name: "Section 6",
             icon: "/placeholder_faction_3.webp",
         },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
+        },
     },
     {
         id: 9,
@@ -137,6 +209,14 @@ export const fakeAgents: Agent[] = [
             id: 4,
             name: "Cunning Hares",
             icon: "/placeholder_faction_4.webp",
+        },
+        rank: {
+            id: 0,
+            name: "S",
+        },
+        specialty: {
+            id: 0,
+            name: "Attack",
         },
     },
 ];

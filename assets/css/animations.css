@@ -6,6 +6,10 @@
     animation: FilmStripMoveBottom 10s linear infinite;
 }
 
+.animation-text-infinite-scroll {
+    animation: TextInfiniteScroll 6s linear infinite;
+}
+
 @keyframes FilmStripMoveTop {
     0% {
         transform: translateX(0);
@@ -21,5 +25,14 @@
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes TextInfiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
     }
 }
