@@ -1,7 +1,8 @@
 <template>
-    <button
+    <div
+        :title="agent.name"
         @click="$emit('selectAgent', agent.id)"
-        class="bg-gray-400 flex-shrink-0 duration-300 ease-in-out h-[34vw] border-black border-[0.5vw] relative overflow-hidden"
+        class="bg-gray-400 flex-shrink-0 duration-300 ease-in-out h-[34vw] border-black border-[0.5vw] relative overflow-hidden cursor-pointer"
         :style="{
             width: (isSelected ? 60 : 20) + 'vw',
             backgroundImage: `url(${getStripeBackgroundFromAttribute(
@@ -55,7 +56,16 @@
             <div class="mx-[2vw]">{{ agent.name }}</div>
             <div class="mx-[2vw]">{{ agent.name }}</div>
         </div>
-
+        <Button
+            class="absolute bottom-[1vw] right-[1vw] z-40 text-xl"
+            :style="{ opacity: isSelected ? 1 : 0 }"
+            @click="
+                () => {
+                    console.log('click');
+                }
+            "
+            >Details</Button
+        >
         <img
             src="/ui/z_bg.png"
             class="absolute top-0 min-w-[60vw] w-[60vw] opacity-20 duration-300 ease-in-out"
@@ -64,7 +74,7 @@
             }"
             alt="Z Background"
         />
-    </button>
+    </div>
 </template>
 
 <script lang="ts" setup>
