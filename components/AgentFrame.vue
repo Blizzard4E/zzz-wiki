@@ -58,7 +58,7 @@
             <div class="mx-[6vw]">{{ agent.name }}</div>
         </div>
         <Button
-            class="absolute bottom-[1vw] right-[1vw] z-40 text-xl"
+            class="absolute bottom-[1vw] right-[1vw] z-40 text-[1.15vw]"
             :style="{ opacity: isSelected ? 1 : 0 }"
             @click="
                 () => {
