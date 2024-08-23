@@ -2,8 +2,9 @@
     <div
         :title="agent.name"
         @click="$emit('selectAgent', agent.id)"
-        class="bg-gray-400 flex-shrink-0 duration-300 ease-in-out h-[34vw] border-black border-[0.5vw] relative overflow-hidden cursor-pointer"
+        class="bg-gray-400 flex-shrink-0 duration-300 ease-in-out h-[34vw] border-black border-[0.5vw] relative overflow-hidden select-none"
         :style="{
+            cursor: isSelected ? 'default' : 'pointer',
             width: (isSelected ? 60 : 20) + 'vw',
             backgroundImage: `url(${getStripeBackgroundFromAttribute(
                 agent.attribute
