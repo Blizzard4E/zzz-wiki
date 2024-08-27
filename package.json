@@ -11,7 +11,13 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@tresjs/cientos": "^4.0.0",
+    "@tresjs/nuxt": "^3.0.3",
     "nuxt": "^3.12.4",
+    "three": "^0.167.1",
     "vue": "latest"
+  },
+  "devDependencies": {
+    "@types/three": "^0.167.2"
   }
 }
