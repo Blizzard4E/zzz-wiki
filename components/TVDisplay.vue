@@ -1,31 +1,31 @@
 <template>
-    <TresCanvas width clear-color="#121212" alpha
-        ><TresPerspectiveCamera
+    <TresCanvas window-size clear-color="#121212" alpha class="z-0">
+        <TresPerspectiveCamera
             :args="[80, 1, 0.1, 1000]"
             :position="[0, 0, 3.5]"
         />
         <OrbitControls />
         <TresAmbientLight :intensity="1" />
-        <TresDirectionalLight :position="[2, 240, 5]" />
+        <TresDirectionalLight :position="[0, 240, 80]" />
         <Suspense>
-            <OldTVModel />
+            <OldTVModel ref="OldTVRef" />
         </Suspense>
     </TresCanvas>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+const OldTVRef = ref();
+const changeScreen = () => {
+    console.log("called changeScreen");
+    OldTVRef.value.changeScreenTexture();
+};
 
-const boxRef = ref();
-const { onLoop } = useRenderLoop();
+const changePlaylist = (playlist: Playlist) => {
+    console.log("called changePlaylist");
+    OldTVRef.value.changePlaylist(playlist);
+};
 
-onLoop(({ delta, elapsed }) => {
-    // I will run at every frame ~ 60FPS (depending of your monitor)
-    if (boxRef.value) {
-        boxRef.value.rotation.y += delta;
-        boxRef.value.rotation.z = elapsed * 0.2;
-    }
-});
+defineExpose({ changeScreen, changePlaylist });
 </script>
 
 <style></style>

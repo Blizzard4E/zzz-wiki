@@ -234,21 +234,39 @@ export const getStripeBackgroundFromAttribute = (
     return backgroundMap[attribute.id] || "/ui/film_strip_bg.png.png";
 };
 
-export const testVideos = [
-    {
-        url: "/test/Qingyi Basic Attack.mp4",
-        duration: 7,
-    },
-    {
-        url: "/test/Qingyi Basic Hold.mp4",
-        duration: 12,
-    },
-    {
-        url: "/test/Qingyi Charged Attack.mp4",
-        duration: 8,
-    },
-    {
-        url: "/test/Qingyi Ultimate.mp4",
-        duration: 10,
-    },
-];
+export const qingyiPlaylist: Playlist = {
+    id: 0,
+    title: "Qingyi Showcase",
+    videos: [
+        {
+            url: "/test/Qingyi Basic Attack.mp4",
+            duration: 7,
+        },
+        {
+            url: "/test/Qingyi Basic Hold.mp4",
+            duration: 12,
+        },
+        {
+            url: "/test/Qingyi Charged Attack.mp4",
+            duration: 8,
+        },
+        {
+            url: "/test/Qingyi Ultimate.mp4",
+            duration: 10,
+        },
+    ],
+};
+export const testPlaylist: Playlist = {
+    id: 1,
+    title: "Recordings",
+    videos: [
+        {
+            url: "/test/vid_1.mp4",
+            duration: 7,
+        },
+        {
+            url: "/test/vid_2.mp4",
+            duration: 12,
+        },
+    ],
+};

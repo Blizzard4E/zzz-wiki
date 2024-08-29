@@ -3,25 +3,37 @@
 </template>
 
 <script lang="ts" setup>
-import {
-    MeshLambertMaterial,
-    MeshStandardMaterial,
-    Texture,
-    TextureLoader,
-} from "three";
+import { MeshLambertMaterial, MeshStandardMaterial, Texture } from "three";
+
+const changeScreenTexture = () => {
+    if (screenVideoTextures.length <= 0) return;
+    nextShow();
+    console.log("TV screen changed");
+};
+const changePlaylist = async (playlist: Playlist) => {
+    ScreenMaterial.map = noiseTexture;
+    order = 0;
+    screenVideoTextures = [];
+    for (let i = 0; i < playlist.videos.length; i++) {
+        let screenVid = (await useVideoTexture(
+            playlist.videos[i].url
+        )) as Texture;
+        screenVid.flipY = false;
+        screenVideoTextures.push(screenVid);
+    }
+    nextShow();
+    console.log("Finished Loading Video Textures for playlist");
+};
+
+defineExpose({ changeScreenTexture, changePlaylist });
+
 const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
 const TVBoxTexture = await useTexture(["/textures/TV_Box.png"]);
 const ScreenTexture = await useTexture(["/textures/TV_Screen_ImageTest.png"]);
-const screenVideoTextures: Texture[] = [];
+let screenVideoTextures: Texture[] = [];
 const noiseTexture = (await useVideoTexture("/test/noise.mp4")) as Texture;
 noiseTexture.flipY = false;
 let order = 0;
-
-for (let i = 0; i < testVideos.length; i++) {
-    let screenVid = (await useVideoTexture(testVideos[i].url)) as Texture;
-    screenVid.flipY = false;
-    screenVideoTextures.push(screenVid);
-}
 
 console.log(screenVideoTextures);
 ScreenTexture.flipY = false;
@@ -32,20 +44,16 @@ nodes.Cube.material = TVMaterial;
 nodes.Cube_1.material = ScreenMaterial;
 console.log(nodes);
 
-function startShow() {
+function nextShow() {
     order++;
-    if (order > testVideos.length - 1) order = 0;
+    if (order > screenVideoTextures.length - 1) order = 0;
+    const videoElement = screenVideoTextures[order].image as HTMLVideoElement;
+    videoElement.currentTime = 0; // Reset video to the beginning
+    videoElement.play(); // Ensure the video is playing
     ScreenMaterial.map = screenVideoTextures[order];
+
     console.log("Playing " + order);
 }
-
-// Start the interval after 2 seconds
-setTimeout(() => {
-    startShow();
-    setInterval(() => {
-        startShow();
-    }, testVideos[order].duration * 1000);
-}, 2000);
 </script>
 
 <style></style>

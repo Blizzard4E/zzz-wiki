@@ -10,7 +10,7 @@
                 :key="index"
                 :selectedAgent="selectedAgent"
                 :agent="fakeAgents[index]"
-                @select-agent="(id) => selectAgent(id, index)"
+                @select-agent="(id: number) => selectAgent(id, index)"
             />
         </div>
         <FilmStrip :top="false" :off-set="0" />

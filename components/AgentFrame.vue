@@ -57,15 +57,11 @@
             <div class="mx-[6vw]">{{ agent.name }}</div>
             <div class="mx-[6vw]">{{ agent.name }}</div>
         </div>
-        <Button
-            class="absolute bottom-[1vw] right-[1vw] z-40 text-[1.15vw]"
+        <a
+            class="absolute bottom-[1vw] right-[1vw] z-40 text-[1.15vw] py-[0.4vw] px-[0.9vw] rounded-full border-[0.5vw] border-zgray bg-zblack text-white duration-300 ease-in-out hover:bg-white hover:border-zblack hover:text-zblack grid items-center"
             :style="{ opacity: isSelected ? 1 : 0 }"
-            @click="
-                () => {
-                    console.log('click');
-                }
-            "
-            >Details</Button
+            :href="`agent/${agent.id}`"
+            >Details</a
         >
         <img
             src="/ui/z_bg.png"

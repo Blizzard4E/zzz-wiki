@@ -28,3 +28,13 @@ export type Faction = {
     name: string;
     icon: string;
 };
+
+export type Playlist = {
+    id: number;
+    title: string;
+    videos: Video[];
+};
+export type Video = {
+    url: string;
+    duration: number;
+};
