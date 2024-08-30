@@ -44,7 +44,7 @@ const displayMaterial = new MeshLambertMaterial({ map: noiseTexture });
 const effectMaterial = new MeshLambertMaterial({
     map: crtTexture,
     transparent: true,
-    opacity: 0.06,
+    opacity: 0.08,
 });
 nodes.Cube.material = boxMaterial;
 nodes.Cube_1.material = displayMaterial;
