@@ -11,7 +11,7 @@ const changeScreenTexture = () => {
     console.log("TV screen changed");
 };
 const changePlaylist = async (playlist: Playlist) => {
-    ScreenMaterial.map = noiseTexture;
+    displayMaterial.map = noiseTexture;
     order = 0;
     screenVideoTextures = [];
     for (let i = 0; i < playlist.videos.length; i++) {
@@ -26,22 +26,28 @@ const changePlaylist = async (playlist: Playlist) => {
 };
 
 defineExpose({ changeScreenTexture, changePlaylist });
-
-const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
-const TVBoxTexture = await useTexture(["/textures/TV_Box.png"]);
-const ScreenTexture = await useTexture(["/textures/TV_Screen_ImageTest.png"]);
 let screenVideoTextures: Texture[] = [];
+const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
+const boxTexture = await useTexture(["/textures/TV_Box.png"]);
+const crtTexture = (await useVideoTexture(
+    "/textures/crt_effect.mp4"
+)) as Texture;
+
 const noiseTexture = (await useVideoTexture("/test/noise.mp4")) as Texture;
 noiseTexture.flipY = false;
 let order = 0;
 
 console.log(screenVideoTextures);
-ScreenTexture.flipY = false;
-const TVMaterial = new MeshStandardMaterial({ map: TVBoxTexture });
-const ScreenMaterial = new MeshLambertMaterial({ map: noiseTexture });
-
-nodes.Cube.material = TVMaterial;
-nodes.Cube_1.material = ScreenMaterial;
+const boxMaterial = new MeshStandardMaterial({ map: boxTexture });
+const displayMaterial = new MeshLambertMaterial({ map: noiseTexture });
+const effectMaterial = new MeshLambertMaterial({
+    map: crtTexture,
+    transparent: true,
+    opacity: 0.065,
+});
+nodes.Cube.material = boxMaterial;
+nodes.Cube_1.material = displayMaterial;
+nodes.Cube_2.material = effectMaterial;
 console.log(nodes);
 
 function nextShow() {
@@ -50,7 +56,7 @@ function nextShow() {
     const videoElement = screenVideoTextures[order].image as HTMLVideoElement;
     videoElement.currentTime = 0; // Reset video to the beginning
     videoElement.play(); // Ensure the video is playing
-    ScreenMaterial.map = screenVideoTextures[order];
+    displayMaterial.map = screenVideoTextures[order];
 
     console.log("Playing " + order);
 }
