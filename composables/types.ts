@@ -6,6 +6,15 @@ export type Agent = {
     specialty: Specialty;
     attribute: Attribute;
     faction: Faction;
+    skills: AgentSkill[];
+};
+
+export type AgentSkill = {
+    id: number;
+    title: string;
+    content: string;
+    type: string;
+    showcase: string;
 };
 
 export type Rank = {
@@ -30,11 +39,11 @@ export type Faction = {
 };
 
 export type Playlist = {
-    id: number;
     title: string;
     videos: Video[];
 };
 export type Video = {
+    id: number;
+    title: string;
     url: string;
-    duration: number;
 };

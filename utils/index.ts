@@ -1,3 +1,21 @@
+const fakeSkills: AgentSkill[] = [
+    {
+        id: 0,
+        title: "Warmup Sparks",
+        content:
+            "Slashes enemies in front, dealing Fire DMG. Character is invulnerable while using this skill.",
+        type: "Basic Attack",
+        showcase: "/test/Qingyi Basic Attack.mp4",
+    },
+    {
+        id: 1,
+        title: "Raging Fire",
+        content:
+            "Slashes enemies nearby, dealing Fire DMG. Anti-Interrupt level is increased while using this skill.",
+        type: "Special Attack",
+        showcase: "/test/Qingyi Basic Hold.mp4",
+    },
+];
 export const fakeAgents: Agent[] = [
     {
         id: 0,
@@ -20,6 +38,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 1,
@@ -42,6 +61,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 2,
@@ -64,6 +84,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 3,
@@ -86,6 +107,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 4,
@@ -108,6 +130,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 5,
@@ -130,6 +153,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 6,
@@ -152,6 +176,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 7,
@@ -174,6 +199,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 8,
@@ -196,6 +222,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
     {
         id: 9,
@@ -218,6 +245,7 @@ export const fakeAgents: Agent[] = [
             id: 0,
             name: "Attack",
         },
+        skills: fakeSkills,
     },
 ];
 export const getStripeBackgroundFromAttribute = (
@@ -231,42 +259,41 @@ export const getStripeBackgroundFromAttribute = (
         4: "/ui/ether_bg_stripe.png",
     };
 
-    return backgroundMap[attribute.id] || "/ui/film_strip_bg.png.png";
+    return backgroundMap[attribute.id] || "/ui/film_strip_bg.png";
 };
 
-export const qingyiPlaylist: Playlist = {
-    id: 0,
-    title: "Qingyi Showcase",
-    videos: [
-        {
-            url: "/test/Qingyi Basic Attack.mp4",
-            duration: 7,
-        },
-        {
-            url: "/test/Qingyi Basic Hold.mp4",
-            duration: 12,
-        },
-        {
-            url: "/test/Qingyi Charged Attack.mp4",
-            duration: 8,
-        },
-        {
-            url: "/test/Qingyi Ultimate.mp4",
-            duration: 10,
-        },
-    ],
+export const getAttributeIconFromAttribute = (attribute: Attribute): string => {
+    const iconMap: { [key: number]: string } = {
+        0: "/ui/fire-attribute.png",
+        1: "/ui/electric-attribute.webp",
+        2: "/ui/ice-attribute.webp",
+        3: "/ui/physical-attribute.webp",
+        4: "/ui/ether-attribute.webp",
+    };
+
+    return iconMap[attribute.id] || "/ui/fire-attribute.png";
 };
-export const testPlaylist: Playlist = {
-    id: 1,
-    title: "Recordings",
-    videos: [
-        {
-            url: "/test/vid_1.mp4",
-            duration: 7,
-        },
-        {
-            url: "/test/vid_2.mp4",
-            duration: 12,
-        },
-    ],
+
+export const getRankIconFromRank = (rank: Rank): string => {
+    const iconMap: { [key: number]: string } = {
+        0: "/ui/s-rank.png",
+    };
+
+    return iconMap[rank.id] || "/ui/s-rank.png";
+};
+
+export const agentSkillsToPlaylist = (agent: Agent): Playlist => {
+    let newPlaylist: Playlist = {
+        title: agent.name + " Showcase",
+        videos: [],
+    };
+    for (let i = 0; i < agent.skills.length; i++) {
+        let newVid: Video = {
+            id: agent.skills[i].id,
+            title: agent.skills[i].title,
+            url: agent.skills[i].showcase,
+        };
+        newPlaylist.videos.push(newVid);
+    }
+    return newPlaylist;
 };

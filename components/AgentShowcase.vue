@@ -5,27 +5,29 @@
 <script lang="ts" setup>
 import { MeshLambertMaterial, MeshStandardMaterial, Texture } from "three";
 
-const changeScreenTexture = () => {
-    if (screenVideoTextures.length <= 0) return;
-    nextShow();
-    console.log("TV screen changed");
-};
-const changePlaylist = async (playlist: Playlist) => {
+const props = defineProps<{
+    playlist: Playlist;
+    selectedShowcaseId: number;
+}>();
+
+const loadPlaylist = async () => {
     displayMaterial.map = noiseTexture;
-    order = 0;
     screenVideoTextures = [];
-    for (let i = 0; i < playlist.videos.length; i++) {
+    for (let i = 0; i < props.playlist.videos.length; i++) {
         let screenVid = (await useVideoTexture(
-            playlist.videos[i].url
+            props.playlist.videos[i].url
         )) as Texture;
         screenVid.flipY = false;
         screenVideoTextures.push(screenVid);
     }
-    nextShow();
+    if (props.playlist.videos.length > 0) playScreen();
     console.log("Finished Loading Video Textures for playlist");
 };
 
-defineExpose({ changeScreenTexture, changePlaylist });
+onMounted(() => {
+    loadPlaylist();
+});
+
 let screenVideoTextures: Texture[] = [];
 const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
 const boxTexture = await useTexture(["/textures/TV_Box.png"]);
@@ -35,7 +37,6 @@ const crtTexture = (await useVideoTexture(
 
 const noiseTexture = (await useVideoTexture("/test/noise.mp4")) as Texture;
 noiseTexture.flipY = false;
-let order = 0;
 
 console.log(screenVideoTextures);
 const boxMaterial = new MeshStandardMaterial({ map: boxTexture });
@@ -50,16 +51,27 @@ nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
 console.log(nodes);
 
-function nextShow() {
-    order++;
-    if (order > screenVideoTextures.length - 1) order = 0;
-    const videoElement = screenVideoTextures[order].image as HTMLVideoElement;
-    videoElement.currentTime = 0; // Reset video to the beginning
-    videoElement.play(); // Ensure the video is playing
-    displayMaterial.map = screenVideoTextures[order];
-
-    console.log("Playing " + order);
+function playScreen() {
+    let showcaseIndex = props.playlist.videos.findIndex(
+        (video: Video) => video.id === props.selectedShowcaseId
+    );
+    const videoElement = screenVideoTextures[showcaseIndex]
+        .image as HTMLVideoElement;
+    videoElement.currentTime = 0;
+    videoElement.play();
+    console.log("Playing " + props.playlist.videos[showcaseIndex].title);
+    displayMaterial.map = screenVideoTextures[showcaseIndex];
 }
+
+watch(
+    () => props.selectedShowcaseId,
+    (current, prev) => {
+        console.log(
+            `Watcher triggered. Current ID: ${current}, Previous ID: ${prev}`
+        );
+        playScreen();
+    }
+);
 </script>
 
 <style></style>
