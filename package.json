@@ -10,14 +10,25 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.1",
     "@tresjs/cientos": "^4.0.0",
     "@tresjs/nuxt": "^3.0.3",
+    "@types/crypto-js": "^4.2.2",
+    "@vueuse/core": "^11.0.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "crypto-js": "^4.2.0",
+    "lucide-vue-next": "^0.436.0",
     "nuxt": "^3.12.4",
+    "radix-vue": "^1.9.5",
+    "shadcn-nuxt": "^0.10.4",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/three": "^0.167.2"
   }
 }

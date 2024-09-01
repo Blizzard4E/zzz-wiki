@@ -54,6 +54,19 @@
                 {{ skill.type }}
             </button>
         </div>
+        <div
+            class="z-30 absolute bottom-[5%] w-[500px] left-[50%] translate-x-[-50%]"
+        >
+            <p>
+                {{
+                    agent.skills[
+                        agent.skills.findIndex(
+                            (skill: AgentSkill) => skill.id === selectedSkillId
+                        )
+                    ].content
+                }}
+            </p>
+        </div>
         <TresCanvas alpha class="z-10">
             <TresPerspectiveCamera
                 :args="[80, 1, 0.1, 1000]"

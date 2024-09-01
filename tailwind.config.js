@@ -1,11 +1,15 @@
+const animate = require("tailwindcss-animate");
+
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [],
     theme: {
         extend: {
             colors: {
                 zblack: "#121212",
-                zgray: "#767678",
+                zlightgray: "#767678",
+                zgray: "#313131",
+                zdarkgray: "#1C1C1C",
                 zneon: "#D9FA00",
             },
         },

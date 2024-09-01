@@ -11,3 +11,21 @@
 body {
     width: calc(100vw - (100vw - 100%));
 }
+
+/* Use these custom variables... */
+:root {
+    --polka-bg-image: radial-gradient(rgb(19, 19, 19) 20%, transparent 20%),
+        radial-gradient(rgb(19, 19, 19) 20%, transparent 20%);
+    --polka-bg-position: 0px 0px, 4px 4px;
+    --polka-bg-size: 8px 8px;
+    --polka-bg-color: rgb(26, 26, 26);
+}
+
+/* ...or add this class to an element */
+.polka {
+    background-image: radial-gradient(rgb(19, 19, 19) 20%, transparent 20%),
+        radial-gradient(rgb(19, 19, 19) 20%, transparent 20%);
+    background-position: 0px 0px, 4px 4px;
+    background-size: 8px 8px;
+    background-color: rgb(26, 26, 26);
+}
