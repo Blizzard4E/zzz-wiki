@@ -1,6 +1,6 @@
 @font-face {
     font-family: "ZZZ";
-    src: url("/fonts/zzz.ttf");
+    src: url("~/assets/fonts/zzz.ttf");
     font-weight: normal;
     font-style: normal;
     font-display: swap;

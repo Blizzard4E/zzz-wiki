@@ -12,7 +12,6 @@ export function decryptData(cipherText: string): object | null {
         const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
         return decryptedData;
     } catch (error) {
-        console.error("Decryption failed:", error);
         return null;
     }
 }

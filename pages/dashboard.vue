@@ -20,18 +20,14 @@ if (import.meta.client) {
 }
 
 const logout = async () => {
-    try {
-        const response = await $fetch<LogoutResponse>("/api/logout", {
-            method: "POST",
-        });
-        if (response.success) {
-            console.log(response.message);
-            userState.value = null;
-        } else {
-            console.log(response.message);
-        }
-    } catch (error) {
-        console.error("Logout failed:", error);
+    const response = await $fetch<LogoutResponse>("/api/logout", {
+        method: "POST",
+    });
+    if (response.success) {
+        console.log(response.message);
+        userState.value = null;
+    } else {
+        console.log(response.message);
     }
 };
 </script>

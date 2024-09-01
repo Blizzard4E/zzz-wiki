@@ -1,6 +1,11 @@
 <template>
-    <nav class="min-h-14 h-14 bg-black z-50 relative outline outline-red-300">
-        <h1 class="text-3xl text-white">ZZZ Navbar (WIP)</h1>
+    <nav
+        class="min-h-14 h-14 bg-black text-white z-50 relative outline outline-red-300 grid items-center"
+    >
+        <div class="flex justify-between px-4 items-center">
+            <a href="/" class="text-3xl leading-none">ZZZ Navbar (WIP)</a>
+            <a href="/dashboard" class="leading-none">Dashboard</a>
+        </div>
     </nav>
 </template>
 

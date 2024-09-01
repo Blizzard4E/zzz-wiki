@@ -39,23 +39,19 @@ const password = ref();
 const userState = useAuth();
 
 const login = async () => {
-    try {
-        const response = await $fetch<LoginResponse>("/api/login", {
-            method: "POST",
-            body: {
-                email: email.value,
-                password: password.value,
-            } as LoginRequest,
-        });
-        if (response.success) {
-            console.log(response.message);
-            userState.value = response.userState;
-            navigateTo("/dashboard");
-        } else {
-            console.log(response.message);
-        }
-    } catch (error) {
-        console.error("Login failed:", error);
+    const response = await $fetch<LoginResponse>("/api/login", {
+        method: "POST",
+        body: {
+            email: email.value,
+            password: password.value,
+        } as LoginRequest,
+    });
+    if (response.success) {
+        console.log(response.message);
+        userState.value = response.userState;
+        navigateTo("/dashboard");
+    } else {
+        console.log(response.message);
     }
 };
 </script>
