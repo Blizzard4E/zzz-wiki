@@ -74,8 +74,8 @@
                     class="w-20 h-20 group-active:scale-[0.85] duration-150"
                     :class="
                         selectedSkill.id == skill.id
-                            ? 'scale-95 brightness-[0.75]'
-                            : ''
+                            ? 'scale-95 brightness-[1]'
+                            : 'brightness-[0.75] hover:brightness-[1] hover:scale-95'
                     "
                     :src="getAgentSkillIconFromAgentSkill(skill)"
                     :alt="selectedSkill.type + ' Icon'"
