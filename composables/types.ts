@@ -2,6 +2,7 @@ export type Agent = {
     id: number;
     name: string;
     portrait: string;
+    mindscape: string;
     rank: Rank;
     specialty: Specialty;
     attribute: Attribute;

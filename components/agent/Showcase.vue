@@ -21,7 +21,6 @@ const loadPlaylist = async () => {
         screenVideoTextures.push(screenVid);
     }
     if (props.playlist.videos.length > 0) playScreen();
-    console.log("Finished Loading Video Textures for playlist");
 };
 
 onMounted(() => {
@@ -44,12 +43,11 @@ const displayMaterial = new MeshLambertMaterial({ map: noiseTexture });
 const effectMaterial = new MeshLambertMaterial({
     map: crtTexture,
     transparent: true,
-    opacity: 0.2,
+    opacity: 0.1,
 });
 nodes.Cube.material = boxMaterial;
 nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
-console.log(nodes);
 
 function playScreen() {
     let showcaseIndex = props.playlist.videos.findIndex(

@@ -47,7 +47,7 @@
             }"
         />
         <div
-            class="absolute top-[-4vw] left-0 text-[12vw] text-white text-left duration-300 ease-in-out uppercase text-nowrap z-10 animation-text-infinite-scroll flex flex-nowrap"
+            class="absolute top-[-4.1vw] left-0 text-[12vw] text-white text-left duration-300 ease-in-out uppercase text-nowrap z-10 animation-text-infinite-scroll flex flex-nowrap"
             :style="{
                 opacity: isSelected ? 0.45 : 0,
             }"

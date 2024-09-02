@@ -21,6 +21,7 @@ export const fakeAgents: Agent[] = [
         id: 0,
         name: "Soilder 11",
         portrait: "/placeholder_agent.png",
+        mindscape: "/mind_0.jpg",
         attribute: {
             id: 0,
             name: "Fire",
@@ -44,6 +45,7 @@ export const fakeAgents: Agent[] = [
         id: 1,
         name: "Zhu Yuan",
         portrait: "/placeholder_agent_1.png",
+        mindscape: "/mind_1.jpg",
         attribute: {
             id: 4,
             name: "Ether",
@@ -67,6 +69,7 @@ export const fakeAgents: Agent[] = [
         id: 2,
         name: "Grace",
         portrait: "/placeholder_agent_2.png",
+        mindscape: "/mind_2.jpg",
         attribute: {
             id: 1,
             name: "Electric",
@@ -90,6 +93,7 @@ export const fakeAgents: Agent[] = [
         id: 3,
         name: "Ellen Joe",
         portrait: "/placeholder_agent_3.png",
+        mindscape: "/mind_3.jpg",
         attribute: {
             id: 2,
             name: "Ice",
@@ -113,6 +117,7 @@ export const fakeAgents: Agent[] = [
         id: 4,
         name: "Billy Kid",
         portrait: "/placeholder_agent_4.png",
+        mindscape: "/mind_4.jpg",
         attribute: {
             id: 3,
             name: "Physical",
@@ -136,6 +141,7 @@ export const fakeAgents: Agent[] = [
         id: 5,
         name: "Soilder 11",
         portrait: "/placeholder_agent.png",
+        mindscape: "/mind_0.jpg",
         attribute: {
             id: 0,
             name: "Fire",
@@ -159,6 +165,7 @@ export const fakeAgents: Agent[] = [
         id: 6,
         name: "Zhu Yuan",
         portrait: "/placeholder_agent_1.png",
+        mindscape: "/mind_1.jpg",
         attribute: {
             id: 4,
             name: "Ether",
@@ -182,6 +189,7 @@ export const fakeAgents: Agent[] = [
         id: 7,
         name: "Grace",
         portrait: "/placeholder_agent_2.png",
+        mindscape: "/mind_2.jpg",
         attribute: {
             id: 1,
             name: "Electric",
@@ -205,6 +213,7 @@ export const fakeAgents: Agent[] = [
         id: 8,
         name: "Soukaku",
         portrait: "/placeholder_agent_3.png",
+        mindscape: "/mind_3.jpg",
         attribute: {
             id: 2,
             name: "Ice",
@@ -228,6 +237,7 @@ export const fakeAgents: Agent[] = [
         id: 9,
         name: "Billy Kid",
         portrait: "/placeholder_agent_4.png",
+        mindscape: "/mind_4.jpg",
         attribute: {
             id: 3,
             name: "Physical",
@@ -282,6 +292,19 @@ export const getRankIconFromRank = (rank: Rank): string => {
     return iconMap[rank.id] || "/ui/s-rank.png";
 };
 
+export const getAgentSkillIconFromAgentSkill = (
+    agentSkill: AgentSkill
+): string => {
+    const iconMap: { [key: string]: string } = {
+        "Basic Attack": "/ui/basic-attack.webp",
+        Dodge: "/ui/dodge.webp",
+        Assist: "/ui/assist.webp",
+        "Special Attack": "/ui/special-attack.webp",
+        "Ultimate Attack": "/ui/ultimate-attack.webp",
+    };
+    return iconMap[agentSkill.type] || "/ui/basic-attack.png";
+};
+
 export const agentSkillsToPlaylist = (agent: Agent): Playlist => {
     let newPlaylist: Playlist = {
         title: agent.name + " Showcase",
@@ -297,3 +320,20 @@ export const agentSkillsToPlaylist = (agent: Agent): Playlist => {
     }
     return newPlaylist;
 };
+export function wrapAttributeDamage(
+    text: string,
+    attribute: Attribute
+): string {
+    const attributeDamagePattern = /(Fire|Electric|Ether|Physical|Ice) DMG/g;
+    const attributeMap: { [key: number]: string } = {
+        0: "text-red-500",
+        1: "text-sky-400",
+        2: "text-cyan-300",
+        3: "text-amber-300",
+        4: "text-fuchsia-500",
+    };
+    return text.replace(
+        attributeDamagePattern,
+        `<span class="${attributeMap[attribute.id] || "text-zneon"}">$&</span>`
+    );
+}
