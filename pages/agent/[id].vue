@@ -75,14 +75,14 @@
                     :class="
                         selectedSkill.id == skill.id
                             ? 'scale-95 brightness-[1]'
-                            : 'brightness-[0.75] hover:brightness-[1] hover:scale-95'
+                            : 'brightness-[0.5] hover:brightness-[1] hover:scale-95'
                     "
                     :src="getAgentSkillIconFromAgentSkill(skill)"
                     :alt="selectedSkill.type + ' Icon'"
                 />
             </button>
         </div>
-        <div class="absolute top-[32vh] right-[5vw] w-[460px]">
+        <div class="absolute top-[32vh] right-[5vw] w-[460px] z-30">
             <div
                 class="rounded-lg px-2 py-1 flex gap-2 items-center bg-zblack border-[3px] border-zgray outline outline-[3px] outline-zblack text-white duration-300 ease-in-out"
             >
@@ -93,18 +93,10 @@
                 />
                 <h4 class="text-xl">{{ selectedSkill.type }}</h4>
             </div>
-            <div class="mt-8">
-                <h3 class="text-3xl">{{ selectedSkill.title }}</h3>
-                <p
-                    class="text-lg mt-2"
-                    v-html="
-                        wrapAttributeDamage(
-                            selectedSkill.content,
-                            agent.attribute
-                        )
-                    "
-                ></p>
-            </div>
+            <div
+                class="mt-8 flex flex-col gap-8 rounded-lg p-4 items-center bg-zblack border-[3px] border-zgray outline outline-[3px] outline-zblack text-white duration-300 ease-in-out"
+                v-html="formatSkillContent(selectedSkill.content)"
+            ></div>
         </div>
         <TresCanvas window-size alpha class="z-20">
             <TresPerspectiveCamera

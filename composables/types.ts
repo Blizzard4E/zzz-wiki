@@ -12,7 +12,6 @@ export type Agent = {
 
 export type AgentSkill = {
     id: number;
-    title: string;
     content: string;
     type: string;
     showcase: string;
