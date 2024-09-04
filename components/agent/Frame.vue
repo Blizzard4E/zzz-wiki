@@ -20,12 +20,12 @@
             }"
         >
             <h3
-                class="text-[2.25vw] duration-300 ease-in-out w-[30vw] leading-[100%] mb-[1vw] drop-shadow-lg"
+                class="text-[2.25vw] duration-300 ease-in-out w-[30vw] leading-[100%] mb-[1vw] text-shadow"
             >
                 {{ agent.faction.name }}
             </h3>
             <h2
-                class="text-[6vw] w-[40vw] leading-[100%] duration-300 ease-in-out drop-shadow-lg"
+                class="text-[6vw] w-[40vw] leading-[100%] duration-300 ease-in-out text-shadow"
             >
                 {{ agent.name }}
             </h2>

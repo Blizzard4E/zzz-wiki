@@ -41,10 +41,12 @@
         </div>
 
         <div class="absolute top-[2.5vw] left-[5vw] z-20 grid gap-[0.25vw]">
-            <h2 class="text-[1.5vw] leading-[100%]">
+            <h2 class="text-[1.5vw] leading-[100%] text-shadow">
                 {{ agent.faction.name }}
             </h2>
-            <h1 class="text-[5vw] leading-[100%]">{{ agent.name }}</h1>
+            <h1 class="text-[5vw] leading-[100%] text-shadow">
+                {{ agent.name }}
+            </h1>
             <div class="flex gap-2">
                 <img
                     class="min-w-[3vw] w-[3vw] h-auto"
