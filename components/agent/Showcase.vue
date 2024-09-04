@@ -50,8 +50,6 @@ const effectMaterial = new MeshLambertMaterial({
 nodes.Cube.material = boxMaterial;
 nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
-model.rotation.y = -Math.PI * 0.3;
-
 function playScreen() {
     let showcaseIndex = props.playlist.videos.findIndex(
         (video: Video) => video.id === props.selectedShowcaseId
