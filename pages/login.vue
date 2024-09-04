@@ -20,9 +20,10 @@
                         type="password"
                         v-model="password"
                     />
-                    <div class="flex justify-between px-2 italic">
-                        <a href="">Register Now</a>
-                        <a href="">Forget Password?</a>
+                    <div class="flex justify-end px-2 italic">
+                        <a href="" class="hover:text-zyellow transition-all"
+                            >Forget Password?</a
+                        >
                     </div>
                     <Button class="w-full" type="submit">Login</Button>
                 </form>
@@ -34,8 +35,8 @@
 <script lang="ts" setup>
 import { Input } from "~/components/ui/input";
 import type { LoginRequest, LoginResponse } from "~/server/types/api";
-const email = ref();
-const password = ref();
+const email = ref("zzz@gmail.com");
+const password = ref("zzz");
 const userState = useAuth();
 
 const login = async () => {
@@ -51,7 +52,6 @@ const login = async () => {
         userState.value = response.userState;
         navigateTo("/dashboard");
     } else {
-        console.log(response.message);
     }
 };
 </script>

@@ -359,7 +359,7 @@ export function formatSkillContent(text: string): string {
 
     text = text.replace(attributeDamagePattern, (match) => {
         const elementType = match.split(" ")[0];
-        const className = attributeColorMap[elementType] || "text-zneon";
+        const className = attributeColorMap[elementType] || "text-zyellow";
         return `<span class="${className}">${match}</span>`;
     });
 

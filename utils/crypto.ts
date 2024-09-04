@@ -1,12 +1,13 @@
 import CryptoJS from "crypto-js";
 
-const secretKey = "your-secret-key";
-
-export function encryptData(data: object): string {
+export function encryptData(data: object, secretKey: string): string {
     return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
 }
 
-export function decryptData(cipherText: string): object | null {
+export function decryptData(
+    cipherText: string,
+    secretKey: string
+): object | null {
     try {
         const bytes = CryptoJS.AES.decrypt(cipherText, secretKey);
         const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));

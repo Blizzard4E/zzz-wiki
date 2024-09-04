@@ -12,7 +12,7 @@
             </div>
         </nav>
         <div
-            class="absolute top-0 left-0 min-h-20 h-2min-h-20 w-screen"
+            class="absolute top-0 left-0 min-h-20 h-20 w-screen"
             @mouseenter="openNavbar"
             @mouseleave="closeNavbar"
         ></div>
@@ -21,12 +21,16 @@
 
 <script lang="ts" setup>
 const isOpen = ref(true);
-
+const router = useRouter();
 const openNavbar = () => {
     isOpen.value = true;
 };
 
 const closeNavbar = () => {
+    if (router.currentRoute.value.path.startsWith("/dashboard")) {
+        openNavbar();
+        return;
+    }
     isOpen.value = false;
 };
 

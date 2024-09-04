@@ -10,7 +10,7 @@ module.exports = {
                 zlightgray: "#767678",
                 zgray: "#313131",
                 zdarkgray: "#1C1C1C",
-                zneon: "#D9FA00",
+                zyellow: "#FCE006",
             },
         },
     },

@@ -4,6 +4,7 @@ import type { LogoutResponse } from "~/server/types/api";
 
 export const useAuth = () => {
     const router = useRouter();
+    const runtimeConfig = useRuntimeConfig();
     const storedToken = useLocalStorage<string>("userState", null, {
         serializer: StorageSerializers.string,
     });
@@ -22,7 +23,8 @@ export const useAuth = () => {
         get() {
             if (storedToken.value) {
                 const decryptedState = decryptData(
-                    storedToken.value
+                    storedToken.value,
+                    runtimeConfig.public.encryptKey
                 ) as UserState;
                 if (decryptedState) return decryptedState;
             }
@@ -31,7 +33,11 @@ export const useAuth = () => {
         },
         set(state) {
             if (state) {
-                storedToken.value = encryptData(state);
+                console.log("helloS");
+                storedToken.value = encryptData(
+                    state,
+                    runtimeConfig.public.encryptKey
+                );
             } else {
                 storedToken.value = null;
             }

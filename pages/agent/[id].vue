@@ -1,5 +1,6 @@
 <template>
     <div
+        @mousemove="handleMouseMove"
         class="bg-zblack h-screen min-w-screen text-white relative overflow-hidden"
         :style="{
             backgroundImage:
@@ -66,7 +67,7 @@
                 class="rounded-full bg-zblack border-[3px] outline text-white duration-300 group"
                 :class="
                     selectedSkill.id == skill.id
-                        ? 'outline-[1px] outline-zneon border-zneon'
+                        ? 'outline-[1px] outline-zyellow border-zyellow'
                         : 'outline-[3px] outline-zblack border-zgray '
                 "
             >
@@ -82,7 +83,7 @@
                 />
             </button>
         </div>
-        <div class="absolute top-[32vh] right-[5vw] w-[460px] z-30">
+        <div class="absolute top-[29.5vh] right-[5vw] w-[460px] z-30">
             <div
                 class="rounded-lg px-2 py-1 flex gap-2 items-center bg-zblack border-[3px] border-zgray outline outline-[3px] outline-zblack text-white duration-300 ease-in-out"
             >
@@ -101,7 +102,7 @@
         <TresCanvas window-size alpha class="z-20">
             <TresPerspectiveCamera
                 :args="[80, 1, 0.1, 1000]"
-                :position="[0, 0.3, 3.25]"
+                :position="[0, 0.2, 3.25]"
             />
             <TresAmbientLight :intensity="1" />
             <TresDirectionalLight :position="[0, 240, 80]" />
@@ -109,6 +110,8 @@
                 <AgentShowcase
                     :selectedShowcaseId="selectedSkill.id"
                     :playlist="agentPlaylist"
+                    :mouse-x="mousePosition.x"
+                    :mouse-y="mousePosition.y"
                 />
             </Suspense>
         </TresCanvas>
@@ -120,7 +123,15 @@ const route = useRoute();
 let agent = fakeAgents[Number(route.params.id)];
 const agentPlaylist = agentSkillsToPlaylist(agent);
 const selectedSkill = ref(agent.skills[0]);
-
+const mousePosition = reactive({
+    x: 0,
+    y: 0,
+});
+const handleMouseMove = (event: MouseEvent) => {
+    mousePosition.x = event.clientX;
+    mousePosition.y = event.clientY;
+    console.log(mousePosition);
+};
 const changeSkill = (skill: AgentSkill) => {
     if (selectedSkill.value == skill) return;
     selectedSkill.value = skill;

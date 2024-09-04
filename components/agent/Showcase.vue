@@ -8,6 +8,8 @@ import { MeshLambertMaterial, MeshStandardMaterial, Texture } from "three";
 const props = defineProps<{
     playlist: Playlist;
     selectedShowcaseId: number;
+    mouseX: number;
+    mouseY: number;
 }>();
 
 const loadPlaylist = async () => {
@@ -43,11 +45,12 @@ const displayMaterial = new MeshLambertMaterial({ map: noiseTexture });
 const effectMaterial = new MeshLambertMaterial({
     map: crtTexture,
     transparent: true,
-    opacity: 0.1,
+    opacity: 0.08,
 });
 nodes.Cube.material = boxMaterial;
 nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
+model.rotation.y = -Math.PI * 0.3;
 
 function playScreen() {
     let showcaseIndex = props.playlist.videos.findIndex(
@@ -60,7 +63,26 @@ function playScreen() {
     console.log("Playing " + props.playlist.videos[showcaseIndex].title);
     displayMaterial.map = screenVideoTextures[showcaseIndex];
 }
+function updateModelRotation() {
+    const rotationRangeX = Math.PI / 12; // 15 degrees
+    const rotationRangeY = Math.PI / 6;
+    const mouseXRatio = props.mouseX / window.innerWidth - 0.5;
+    const mouseYRatio = props.mouseY / window.innerHeight - 0.5;
 
+    const targetRotationX = -mouseYRatio * rotationRangeX;
+    const targetRotationY = -mouseXRatio * rotationRangeY;
+
+    model.rotation.x = Math.max(
+        -rotationRangeX,
+        Math.min(rotationRangeX, targetRotationX)
+    );
+    model.rotation.y = Math.max(
+        -rotationRangeY,
+        Math.min(rotationRangeY, targetRotationY)
+    );
+}
+
+watch(() => [props.mouseX, props.mouseY], updateModelRotation);
 watch(
     () => props.selectedShowcaseId,
     (current, prev) => {
