@@ -149,8 +149,7 @@ const mousePosition = reactive({
 });
 const handleMouseMove = (event: MouseEvent) => {
     mousePosition.x = event.clientX;
-    mousePosition.y = event.clientY;
-    console.log(mousePosition);
+    mousePosition.y = event.clientY; 
 };
 const changeSkill = (skill: AgentSkill) => {
     if (selectedSkill.value == skill) return;

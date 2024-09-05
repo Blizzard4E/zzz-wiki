@@ -39,7 +39,7 @@ const boxTexture = await useTexture(["/textures/TV_Box.png"]);
 const crtTexture = (await useVideoTexture(
     "/textures/crt_effect.mp4"
 )) as Texture;
-const noiseTexture = (await useVideoTexture("/test/noise.mp4")) as Texture;
+const noiseTexture = (await useVideoTexture("/textures/noise.mp4")) as Texture;
 noiseTexture.flipY = false;
 crtTexture.flipY = false;
 

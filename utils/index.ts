@@ -18,7 +18,7 @@ const fakeSkills: AgentSkill[] = [
         content:
             "<div><h3>Incident Management</h3><p>When the on-field character is launched in the air, press Ultimate to activate:<br>Throws a grenade at the enemy, dealing Electric DMG.<br>Character is invulnerable while using this skill.</p></div>",
         type: "Assist",
-        showcase: "/test/Qingyi Basic Hold.mp4",
+        showcase: "/test/Qingyi Charged Attack.mp4",
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ const fakeSkills: AgentSkill[] = [
         content:
             "<div><h3>Avalanche</h3><p>When a Chain Attack is triggered, select the character to activate: Crash down from above and unleash an ice storm, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Endless Winter</h3><p>When Decibel Rating is at Maximum, press Ultimate to activate: Crash down from above and unleash an ice storm before a powerful scissor strike, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div>",
         type: "Ultimate",
-        showcase: "/test/Qingyi Basic Hold.mp4",
+        showcase: "/test/Qingyi Ultimate.mp4",
     },
 ];
 export const fakeAgents: Agent[] = [
