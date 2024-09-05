@@ -33,7 +33,6 @@ export const useAuth = () => {
         },
         set(state) {
             if (state) {
-                console.log("helloS");
                 storedToken.value = encryptData(
                     state,
                     runtimeConfig.public.encryptKey

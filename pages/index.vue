@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-zblack min-h-screen min-w-screen text-white relative">
+    <div class="bg-black min-h-[92vh] min-w-[92vh] text-white relative">
         <AgentSelection />
     </div>
 </template>

@@ -33,3 +33,23 @@ body {
 .text-shadow {
     text-shadow: rgba(0, 0, 0, 0.7) 1px 0 8px;
 }
+/* width */
+.scroll-bar::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.scroll-bar::-webkit-scrollbar-track {
+    background: #313131;
+}
+
+/* Handle */
+.scroll-bar::-webkit-scrollbar-thumb {
+    background: #767678;
+}
+
+/* Handle on hover */
+.scroll-bar::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background: #767678;
+}

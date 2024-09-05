@@ -48,7 +48,6 @@ const login = async () => {
         } as LoginRequest,
     });
     if (response.success) {
-        console.log(response.message);
         userState.value = response.userState;
         navigateTo("/dashboard");
     } else {

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="relative overflow-x-clip z-10 flex w-[200vw]"
+        class="relative overflow-x-clip z-10 flex w-[185vw]"
         style="background: url(/ui/film_strip_bg.png); background-size: 0.8vw"
         :class="
             top
@@ -12,11 +12,11 @@
         }"
     >
         <img
-            class="min-w-[100vw]"
+            class="min-w-[92.5vw]"
             src="/ui/film_strip.png"
             alt="Film Strip Background"
         /><img
-            class="min-w-[100vw]"
+            class="min-w-[92.5vw]"
             src="/ui/film_strip.png"
             alt="Film Strip Background"
         />

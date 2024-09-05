@@ -34,7 +34,7 @@ const fakeSkills: AgentSkill[] = [
     {
         id: 4,
         content:
-            "<div><h3>Avalanche</h3><p>When a Chain Attack is triggered, select the character to activate: Crash down from above and unleash an ice storm, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Endless Winter</h3><p>When Decibel Rating is at Maximum, press Ultimate to activate: Crash down from above and unleash an ice storm before a powerful scissor strike, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div>",
+            "<div><h3>Avalanche</h3><p>When a Chain Attack is triggered, select the character to activate: Crash down from above and unleash an ice storm, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Endless Winter</h3><p>When Decibel Rating is at Maximum, press Ultimate to activate: Crash down from above and unleash an ice storm before a powerful scissor strike, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Avalanche</h3><p>When a Chain Attack is triggered, select the character to activate: Crash down from above and unleash an ice storm, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Endless Winter</h3><p>When Decibel Rating is at Maximum, press Ultimate to activate: Crash down from above and unleash an ice storm before a powerful scissor strike, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div>",
         type: "Ultimate",
         showcase:
             "https://res.cloudinary.com/duzvevuup/video/upload/v1725511729/ZZZ/Qingyi_Ultimate_mwbkdx.mp4",

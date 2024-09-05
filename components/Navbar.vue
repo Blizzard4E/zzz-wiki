@@ -1,44 +1,24 @@
 <template>
-    <div class="fixed z-[60]">
+    <div class="sticky top-0 left-0 z-[60]">
         <nav
-            class="absolute top-0 left-0 min-h-20 h-2min-h-20 bg-black text-white z-50 grid items-center w-screen duration-300 ease-in-out"
+            class="min-h-[8vh] h-2min-h-[8vh] bg-black text-white z-50 grid items-center w-full duration-300 ease-in-out"
             :style="{ transform: `translateY(${isOpen ? '0' : '-100%'})` }"
-            @mouseenter="openNavbar"
-            @mouseleave="closeNavbar"
         >
             <div class="flex justify-between px-4 items-center">
-                <a href="/" class="text-3xl leading-none">ZZZ Navbar (WIP)</a>
-                <a href="/dashboard" class="leading-none">Dashboard</a>
+                <NuxtLink to="/" class="text-3xl leading-none"
+                    >ZZZ Navbar (WIP)</NuxtLink
+                >
+                <NuxtLink to="/dashboard" class="leading-none"
+                    >Dashboard</NuxtLink
+                >
             </div>
         </nav>
-        <div
-            class="absolute top-0 left-0 min-h-20 h-20 w-screen"
-            @mouseenter="openNavbar"
-            @mouseleave="closeNavbar"
-        ></div>
     </div>
 </template>
 
 <script lang="ts" setup>
 const isOpen = ref(true);
 const router = useRouter();
-const openNavbar = () => {
-    isOpen.value = true;
-};
-
-const closeNavbar = () => {
-    if (router.currentRoute.value.path.startsWith("/dashboard")) {
-        openNavbar();
-        return;
-    }
-    isOpen.value = false;
-};
-
-onMounted(() => {
-    setTimeout(() => {
-        closeNavbar();
-    }, 1500);
-});
 </script>
 
 <style></style>

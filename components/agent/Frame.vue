@@ -58,11 +58,11 @@
             <div class="mx-[6vw]">{{ agent.name }}</div>
             <div class="mx-[6vw]">{{ agent.name }}</div>
         </div>
-        <a
+        <NuxtLink
             class="absolute bottom-[1vw] right-[1vw] z-40 text-[1.15vw] py-[0.4vw] px-[0.9vw] rounded-full border-[0.5vw] border-zlightgray bg-zblack text-white duration-300 ease-in-out hover:bg-white hover:border-zblack hover:text-zblack grid items-center"
             :style="{ opacity: isSelected ? 1 : 0 }"
-            :href="`agent/${agent.id}`"
-            >Details</a
+            :to="{ name: 'agents-id', params: { id: agent.id } }"
+            >Details</NuxtLink
         >
         <img
             src="/ui/z_bg.png"
