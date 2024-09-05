@@ -32,9 +32,10 @@
         </div>
         <img
             :src="agent.portrait"
-            class="absolute bottom-0 min-w-[48vw] w-[48vw] duration-300 ease-in-out z-20"
+            class="absolute bottom-0 min-w-[48vw] w-[48vw] duration-300 ease-in-out z-20 animation-floating"
             :style="{
                 right: isSelected ? '-8vw' : '-15vw',
+                animationDelay: 0.3 * agent.id + 's',
             }"
             :alt="agent.name + ' Portrait'"
         />

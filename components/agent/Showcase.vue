@@ -30,16 +30,20 @@ onMounted(() => {
 });
 
 let screenVideoTextures: Texture[] = [];
+
+// Load in TV model
 const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
+
+// Load in initial textures
 const boxTexture = await useTexture(["/textures/TV_Box.png"]);
 const crtTexture = (await useVideoTexture(
     "/textures/crt_effect.mp4"
 )) as Texture;
-
 const noiseTexture = (await useVideoTexture("/test/noise.mp4")) as Texture;
 noiseTexture.flipY = false;
+crtTexture.flipY = false;
 
-console.log(screenVideoTextures);
+// Create materials
 const boxMaterial = new MeshStandardMaterial({ map: boxTexture });
 const displayMaterial = new MeshLambertMaterial({ map: noiseTexture });
 const effectMaterial = new MeshLambertMaterial({
@@ -50,6 +54,7 @@ const effectMaterial = new MeshLambertMaterial({
 nodes.Cube.material = boxMaterial;
 nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
+
 function playScreen() {
     let showcaseIndex = props.playlist.videos.findIndex(
         (video: Video) => video.id === props.selectedShowcaseId
@@ -84,9 +89,6 @@ watch(() => [props.mouseX, props.mouseY], updateModelRotation);
 watch(
     () => props.selectedShowcaseId,
     (current, prev) => {
-        console.log(
-            `Watcher triggered. Current ID: ${current}, Previous ID: ${prev}`
-        );
         playScreen();
     }
 );
