@@ -3,7 +3,7 @@
         class="h-screen bg-zblack text-white grid place-items-center bg-cover bg-no-repeat bg-center"
         :style="{
             backgroundImage:
-                'linear-gradient(rgba(18,18,18,0.8),rgba(18,18,18,0.8)), url(/background_0.png)',
+                'linear-gradient(rgba(18,18,18,0.8),rgba(18,18,18,0.8)), url(https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/background_0_q1vqwp.webp)',
         }"
     >
         <Card class="w-[500px]">
