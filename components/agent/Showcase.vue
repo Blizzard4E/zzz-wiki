@@ -32,14 +32,18 @@ onMounted(() => {
 let screenVideoTextures: Texture[] = [];
 
 // Load in TV model
-const { scene: model, nodes } = await useGLTF("/models/Old_TV.glb");
+const { scene: model, nodes } = await useGLTF(
+    "https://res.cloudinary.com/duzvevuup/image/upload/v1725511676/ZZZ/Old_TV_s4thmz.glb"
+);
 
 // Load in initial textures
 const boxTexture = await useTexture(["/textures/TV_Box.png"]);
 const crtTexture = (await useVideoTexture(
-    "/textures/crt_effect.mp4"
+    "https://res.cloudinary.com/duzvevuup/video/upload/v1725511631/ZZZ/crt_effect_qtw9j4.mp4"
 )) as Texture;
-const noiseTexture = (await useVideoTexture("/textures/noise.mp4")) as Texture;
+const noiseTexture = (await useVideoTexture(
+    "https://res.cloudinary.com/duzvevuup/video/upload/v1725511631/ZZZ/noise_mya2l8.mp4"
+)) as Texture;
 noiseTexture.flipY = false;
 crtTexture.flipY = false;
 

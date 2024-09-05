@@ -4,43 +4,50 @@ const fakeSkills: AgentSkill[] = [
         content:
             "<div><h3>Warmup Sparks</h3><p>Press Basic Attack to activate:<br>Unleashes up to 4 slashes, dealing Physical DMG.</p></div>",
         type: "Basic Attack",
-        showcase: "/test/Qingyi Basic Attack.mp4",
+        showcase:
+            "https://res.cloudinary.com/duzvevuup/video/upload/v1725511724/ZZZ/Qingyi_Basic_Attack_qhizbl.mp4",
     },
     {
         id: 1,
         content:
             "<div><h3>Tactical Detour</h3><p>Press Dodge to activate: A rapid dodge. Character is invulnerable while using this skill.</p></div><div><h3>Firepower Offensive</h3><p>Assault Mode Press Basic Attack during a dodge to activate: Uses handgun to attack, dealing Ether DMG.</p></div>",
         type: "Dodge",
-        showcase: "/test/Qingyi Basic Hold.mp4",
+        showcase:
+            "https://res.cloudinary.com/duzvevuup/video/upload/v1725511727/ZZZ/Qingyi_Basic_Hold_ipb7qz.mp4",
     },
     {
         id: 2,
         content:
             "<div><h3>Incident Management</h3><p>When the on-field character is launched in the air, press Ultimate to activate:<br>Throws a grenade at the enemy, dealing Electric DMG.<br>Character is invulnerable while using this skill.</p></div>",
         type: "Assist",
-        showcase: "/test/Qingyi Charged Attack.mp4",
+        showcase:
+            "https://res.cloudinary.com/duzvevuup/video/upload/v1725511726/ZZZ/Qingyi_Charged_Attack_emrcge.mp4",
     },
     {
         id: 3,
         content:
             "<div><h3>Raging Fire</h3><p>Press Special Attack to activate:<br>Slashes enemies nearby, dealing Fire DMG.<br>Anti-Interrupt level is increased while using this skill.</p></div><div><h3>Fervent Fire</h3><p>With enough Energy, press Special Attack to activate:<br>Slashes enemies nearby, dealing massive Fire DMG.<br>Character is invulnerable while using this skill.<br>After using this skill, Soldier 11's Basic Attacks and Dash Attacks will trigger Fire Suppression for up to 15s or 8 times.</p></div>",
         type: "Special Attack",
-        showcase: "/test/Qingyi Basic Hold.mp4",
+        showcase:
+            "https://res.cloudinary.com/duzvevuup/video/upload/v1725511727/ZZZ/Qingyi_Basic_Hold_ipb7qz.mp4",
     },
     {
         id: 4,
         content:
             "<div><h3>Avalanche</h3><p>When a Chain Attack is triggered, select the character to activate: Crash down from above and unleash an ice storm, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div><div><h3>Endless Winter</h3><p>When Decibel Rating is at Maximum, press Ultimate to activate: Crash down from above and unleash an ice storm before a powerful scissor strike, dealing massive Ice DMG. Character is invulnerable while using this skill.</p></div>",
         type: "Ultimate",
-        showcase: "/test/Qingyi Ultimate.mp4",
+        showcase:
+            "https://res.cloudinary.com/duzvevuup/video/upload/v1725511729/ZZZ/Qingyi_Ultimate_mwbkdx.mp4",
     },
 ];
 export const fakeAgents: Agent[] = [
     {
         id: 0,
         name: "Soilder 11",
-        portrait: "/placeholder_agent.png",
-        mindscape: "/mind_0.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/placeholder_agent_wbezax.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_0_v3jlgn.jpg",
         attribute: {
             id: 0,
             name: "Fire",
@@ -48,7 +55,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 0,
             name: "Obol Squad",
-            icon: "/placeholder_faction.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/placeholder_faction_mle9ms.png",
         },
         rank: {
             id: 0,
@@ -63,8 +70,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 1,
         name: "Zhu Yuan",
-        portrait: "/placeholder_agent_1.png",
-        mindscape: "/mind_1.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511172/ZZZ/placeholder_agent_1_kxfyez.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_1_xezcag.jpg",
         attribute: {
             id: 4,
             name: "Ether",
@@ -72,7 +81,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 1,
             name: "Criminal Investigation Special Response Team",
-            icon: "/placeholder_faction_1.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511169/ZZZ/placeholder_faction_1_d32cny.png",
         },
         rank: {
             id: 0,
@@ -87,8 +96,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 2,
         name: "Grace",
-        portrait: "/placeholder_agent_2.png",
-        mindscape: "/mind_2.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/placeholder_agent_2_dcn27q.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_2_ulvanu.jpg",
         attribute: {
             id: 1,
             name: "Electric",
@@ -96,7 +107,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 2,
             name: "Belobog Heavy Industries",
-            icon: "/placeholder_faction_2.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_2_hpxcs8.png",
         },
         rank: {
             id: 0,
@@ -111,8 +122,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 3,
         name: "Ellen Joe",
-        portrait: "/placeholder_agent_3.png",
-        mindscape: "/mind_3.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511172/ZZZ/placeholder_agent_3_xr4i1x.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_3_bhuzll.jpg",
         attribute: {
             id: 2,
             name: "Ice",
@@ -120,7 +133,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 3,
             name: "Victoria Housekeeping",
-            icon: "/placeholder_faction_3.webp",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_3_s1rhf2.webp",
         },
         rank: {
             id: 0,
@@ -135,8 +148,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 4,
         name: "Billy Kid",
-        portrait: "/placeholder_agent_4.png",
-        mindscape: "/mind_4.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/placeholder_agent_4_uxl659.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/mind_4_hmcckt.jpg",
         attribute: {
             id: 3,
             name: "Physical",
@@ -144,7 +159,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 4,
             name: "Cunning Hares",
-            icon: "/placeholder_faction_4.webp",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_4_e1u2qu.webp",
         },
         rank: {
             id: 0,
@@ -159,8 +174,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 5,
         name: "Soilder 11",
-        portrait: "/placeholder_agent.png",
-        mindscape: "/mind_0.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/placeholder_agent_wbezax.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_0_v3jlgn.jpg",
         attribute: {
             id: 0,
             name: "Fire",
@@ -168,7 +185,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 0,
             name: "Obol Squad",
-            icon: "/placeholder_faction.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/placeholder_faction_mle9ms.png",
         },
         rank: {
             id: 0,
@@ -183,8 +200,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 6,
         name: "Zhu Yuan",
-        portrait: "/placeholder_agent_1.png",
-        mindscape: "/mind_1.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511172/ZZZ/placeholder_agent_1_kxfyez.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_1_xezcag.jpg",
         attribute: {
             id: 4,
             name: "Ether",
@@ -192,7 +211,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 1,
             name: "Criminal Investigation Special Response Team",
-            icon: "/placeholder_faction_1.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511169/ZZZ/placeholder_faction_1_d32cny.png",
         },
         rank: {
             id: 0,
@@ -207,8 +226,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 7,
         name: "Grace",
-        portrait: "/placeholder_agent_2.png",
-        mindscape: "/mind_2.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/placeholder_agent_2_dcn27q.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_2_ulvanu.jpg",
         attribute: {
             id: 1,
             name: "Electric",
@@ -216,7 +237,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 2,
             name: "Belobog Heavy Industries",
-            icon: "/placeholder_faction_2.png",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_2_hpxcs8.png",
         },
         rank: {
             id: 0,
@@ -231,8 +252,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 8,
         name: "Soukaku",
-        portrait: "/placeholder_agent_3.png",
-        mindscape: "/mind_3.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511172/ZZZ/placeholder_agent_3_xr4i1x.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_3_bhuzll.jpg",
         attribute: {
             id: 2,
             name: "Ice",
@@ -240,7 +263,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 3,
             name: "Section 6",
-            icon: "/placeholder_faction_3.webp",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_3_s1rhf2.webp",
         },
         rank: {
             id: 0,
@@ -255,8 +278,10 @@ export const fakeAgents: Agent[] = [
     {
         id: 9,
         name: "Billy Kid",
-        portrait: "/placeholder_agent_4.png",
-        mindscape: "/mind_4.jpg",
+        portrait:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/placeholder_agent_4_uxl659.png",
+        mindscape:
+            "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/mind_4_hmcckt.jpg",
         attribute: {
             id: 3,
             name: "Physical",
@@ -264,7 +289,7 @@ export const fakeAgents: Agent[] = [
         faction: {
             id: 4,
             name: "Cunning Hares",
-            icon: "/placeholder_faction_4.webp",
+            icon: "https://res.cloudinary.com/duzvevuup/image/upload/v1725511171/ZZZ/placeholder_faction_4_e1u2qu.webp",
         },
         rank: {
             id: 0,
