@@ -1,20 +1,26 @@
-import { StorageSerializers, useLocalStorage } from "@vueuse/core";
+import { useRouter, useRuntimeConfig } from "#app";
 import type { UserState } from "./types";
-import type { LogoutResponse } from "~/server/types/api";
 
 export const useAuth = () => {
     const router = useRouter();
     const runtimeConfig = useRuntimeConfig();
-    const storedToken = useLocalStorage<string>("userState", null, {
-        serializer: StorageSerializers.string,
-    });
+    const storedToken = useState<string | null>("userState", () => null);
 
-    const logout = async () => {
-        const response = await $fetch<LogoutResponse>("/api/logout", {
-            method: "POST",
+    const reAuthenticate = async () => {
+        const getProfile = await $fetch("/api/get-profile", {
+            ignoreResponseError: true,
         });
-        if (response.success) {
-            storedToken.value = null;
+        if (getProfile.status == 200 && getProfile.data) {
+            storedToken.value = encryptData(
+                getProfile.data,
+                runtimeConfig.public.encryptKey
+            );
+            router.push({ path: "/dashboard" });
+        } else {
+            await $fetch("/api/logout", {
+                method: "POST",
+                ignoreResponseError: true,
+            });
             router.push({ path: "/" });
         }
     };
@@ -28,7 +34,8 @@ export const useAuth = () => {
                 ) as UserState;
                 if (decryptedState) return decryptedState;
             }
-            logout();
+
+            reAuthenticate();
             return null;
         },
         set(state) {

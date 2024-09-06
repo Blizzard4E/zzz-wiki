@@ -302,6 +302,49 @@ export const fakeAgents: Agent[] = [
         skills: fakeSkills,
     },
 ];
+export enum Permissions {
+    CreateUsers = "Create Users",
+    EditUsers = "Edit Users",
+    DeleteUsers = "Delete Users",
+    CreateRoles = "Create Roles",
+    EditRoles = "Edit Roles",
+    DeleteRoles = "Delete Roles",
+    CreateRanks = "Create Ranks",
+    EditRanks = "Edit Ranks",
+    DeleteRanks = "Delete Ranks",
+    CreateAttributes = "Create Attributes",
+    EditAttributes = "Edit Attributes",
+    DeleteAttributes = "Delete Attributes",
+    CreateSpecialties = "Create Specialties",
+    EditSpecialties = "Edit Specialties",
+    DeleteSpecialties = "Delete Specialties",
+    CreateFactions = "Create Factions",
+    EditFactions = "Edit Factions",
+    DeleteFactions = "Delete Factions",
+    CreateAgents = "Create Agents",
+    EditAgents = "Edit Agents",
+    DeleteAgents = "Delete Agents",
+    CreateWEngines = "Create W_Engines",
+    EditWEngines = "Edit W_Engines",
+    DeleteWEngines = "Delete W_Engines",
+    CreateBangboos = "Create Bangboos",
+    EditBangboos = "Edit Bangboos",
+    DeleteBangboos = "Delete Bangboos",
+}
+export function formatDateTime(dateInput: string | Date): string {
+    const date = new Date(dateInput);
+
+    const formatter = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    });
+
+    return formatter.format(date);
+}
 export const getStripeBackgroundFromAttribute = (
     attribute: Attribute
 ): string => {

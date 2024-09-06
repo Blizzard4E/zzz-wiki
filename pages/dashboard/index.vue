@@ -11,19 +11,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { LogoutResponse } from "~/server/types/api";
-
 const userState = useAuth();
 
 const logout = async () => {
-    const response = await $fetch<LogoutResponse>("/api/logout", {
+    const response = await $fetch("/api/logout", {
         method: "POST",
     });
-    if (response.success) {
-        console.log(response.message);
+    console.log("logout button", response);
+    if (response.status == 200) {
         userState.value = null;
-    } else {
-        console.log(response.message);
     }
 };
 </script>

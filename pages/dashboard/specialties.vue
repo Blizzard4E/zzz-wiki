@@ -1,8 +1,8 @@
 <template>
     <Card class="text-white w-full">
-        <h1>Agents</h1>
+        <h1>Specialties</h1>
         <Table>
-            <TableCaption>A list of agents.</TableCaption>
+            <TableCaption>A list of specialties.</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead>ID</TableHead>
@@ -23,15 +23,6 @@
     </Card>
 </template>
 
-<script lang="ts" setup>
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-</script>
+<script lang="ts" setup></script>
 
 <style></style>

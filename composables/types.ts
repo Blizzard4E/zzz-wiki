@@ -20,6 +20,8 @@ export type AgentSkill = {
 export type Rank = {
     id: number;
     name: string;
+    updated_at: string;
+    created_at: string;
 };
 
 export type Attribute = {
@@ -55,15 +57,6 @@ export type UserState = {
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
-    roles: Role[];
+    roles: string[];
+    permissions: string[];
 } | null;
-
-export type Role = {
-    id: number;
-    name: string;
-    permissions: Permission[];
-};
-export type Permission = {
-    id: number;
-    name: string;
-};

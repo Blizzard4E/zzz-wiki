@@ -20,12 +20,19 @@
                         type="password"
                         v-model="password"
                     />
-                    <div class="flex justify-end px-2 italic">
+                    <div class="flex justify-between px-2 italic">
+                        <ErrorMessage class="capitalize">{{
+                            errorMessage
+                        }}</ErrorMessage>
                         <a href="" class="hover:text-zyellow transition-all"
                             >Forget Password?</a
                         >
                     </div>
-                    <Button class="w-full" type="submit">Login</Button>
+
+                    <Button class="w-full" type="submit" :disabled="pending">
+                        <span v-if="pending">Logging in...</span>
+                        <span v-else>Login</span></Button
+                    >
                 </form>
             </CardContent>
         </Card>
@@ -34,23 +41,29 @@
 
 <script lang="ts" setup>
 import { Input } from "~/components/ui/input";
-import type { LoginRequest, LoginResponse } from "~/server/types/api";
+import type { APIResponse } from "~/server/types/api";
+import type { LoginRequest } from "~/server/types/request";
 const email = ref("zzz@gmail.com");
 const password = ref("zzz");
 const userState = useAuth();
-
+const errorMessage = ref();
+const pending = ref(false);
 const login = async () => {
-    const response = await $fetch<LoginResponse>("/api/login", {
+    pending.value = true;
+    const response = await $fetch<APIResponse<UserState>>("/api/login", {
         method: "POST",
         body: {
             email: email.value,
             password: password.value,
         } as LoginRequest,
     });
-    if (response.success) {
-        userState.value = response.userState;
+    pending.value = false;
+    if (response.status == 200 && response.data) {
+        userState.value = response.data;
         navigateTo("/dashboard");
     } else {
+        console.log(response);
+        errorMessage.value = response.message;
     }
 };
 </script>

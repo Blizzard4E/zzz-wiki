@@ -1,35 +1,43 @@
-import { Role, UserState } from "~/composables/types";
+import { UserState } from "~/composables/types";
 
-export interface LoginRequest {
-    email: string;
-    password: string;
-}
-
-export interface LoginResponse {
-    success: boolean;
-    userState: UserState;
-    message?: string;
-}
-
-export interface LogoutResponse {
-    success: boolean;
-    message?: string;
-}
-
-export interface ExternalAPILoginResponse {
-    status: string;
+export type APIResponse<Data = undefined> = {
+    status: number;
     message: string;
-    data: {
-        user: {
-            id: number;
-            name: string;
-            email: string;
-            email_verified_at: string | null;
-            created_at: string;
-            updated_at: string;
-            roles: Role[];
-        };
-        token: string;
-        expires_at: string;
+    data?: Data;
+};
+
+// Login
+
+export type LaravelAPILoginData = {
+    user: {
+        id: number;
+        name: string;
+        email: string;
+        email_verified_at: string | null;
+        created_at: string;
+        updated_at: string;
+        roles: string[];
+        permissions: string[];
     };
-}
+    token: string;
+    expires_at: string;
+};
+export type HTTPMethod =
+    | "GET"
+    | "HEAD"
+    | "PATCH"
+    | "POST"
+    | "PUT"
+    | "DELETE"
+    | "CONNECT"
+    | "OPTIONS"
+    | "TRACE"
+    | "get"
+    | "head"
+    | "patch"
+    | "post"
+    | "put"
+    | "delete"
+    | "connect"
+    | "options"
+    | "trace";
