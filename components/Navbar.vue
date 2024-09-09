@@ -8,7 +8,9 @@
                 <NuxtLink to="/" class="text-3xl leading-none"
                     >ZZZ Navbar (WIP)</NuxtLink
                 >
-                <a href="/dashboard" class="leading-none">Dashboard</a>
+                <NuxtLink to="/dashboard" class="leading-none"
+                    >Dashboard</NuxtLink
+                >
             </div>
         </nav>
     </div>

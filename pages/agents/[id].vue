@@ -72,6 +72,7 @@
             <div class="flex gap-4 justify-center items-center select-none">
                 <button
                     v-for="skill in agent.skills"
+                    :key="`skill-select-${skill.id}`"
                     @click="() => changeSkill(skill)"
                     class="rounded-full bg-zblack border-[3px] outline text-white duration-300 group animation-bottom-slide-in"
                     :class="
@@ -97,6 +98,7 @@
         <div class="animation-right-slide-in relative z-30">
             <div
                 v-for="skill in agent.skills"
+                :key="`selected-skill-${skill.id}`"
                 class="absolute top-[21.5vh] right-[5vw] w-[460px] z-30 translate-x-[150%]"
                 :class="
                     selectedSkill.id == skill.id

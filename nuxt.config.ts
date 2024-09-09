@@ -17,8 +17,5 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         apiURL: "",
-        public: {
-            encryptKey: "",
-        },
     },
 });

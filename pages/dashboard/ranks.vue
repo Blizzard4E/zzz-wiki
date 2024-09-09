@@ -4,33 +4,74 @@
             <div class="flex justify-between">
                 <h1 class="text-2xl">Ranks</h1>
                 <client-only>
-                    <RankCreate v-if="showCreate" @success="refresh" />
+                    <RankCreate
+                        v-if="
+                            userState?.permissions.includes(
+                                Permissions.CreateRanks
+                            )
+                        "
+                        @success="refresh"
+                    />
                     <div v-else></div>
                 </client-only>
             </div>
         </CardHeader>
-
-        <Table>
-            <TableCaption class="polka-bottom p-4"
-                >A list of ranks.</TableCaption
-            >
-            <TableHeader>
-                <TableRow>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Updated</TableHead>
-                    <TableHead>Added</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow v-for="rank in data?.data">
-                    <TableCell>{{ rank.id }}</TableCell>
-                    <TableCell>{{ rank.name }}</TableCell>
-                    <TableCell>{{ formatDateTime(rank.updated_at) }}</TableCell>
-                    <TableCell>{{ formatDateTime(rank.created_at) }}</TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+        <ClientOnly fallback-tag="div">
+            <Table v-if="status == 'success'">
+                <TableCaption class="polka-bottom p-4"
+                    >A list of ranks.</TableCaption
+                >
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>ID</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Updated</TableHead>
+                        <TableHead>Added</TableHead>
+                        <TableHead></TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow v-for="rank in data?.data" :key="rank.id">
+                        <TableCell>{{ rank.id }}</TableCell>
+                        <TableCell>{{ rank.name }}</TableCell>
+                        <TableCell>{{
+                            formatDateTime(rank.updated_at)
+                        }}</TableCell>
+                        <TableCell>{{
+                            formatDateTime(rank.created_at)
+                        }}</TableCell>
+                        <TableCell class="flex gap-4">
+                            <RankEdit
+                                v-if="
+                                    userState?.permissions.includes(
+                                        Permissions.EditRanks
+                                    )
+                                "
+                                :rank="rank"
+                                @success="refresh"
+                            />
+                            <RankDelete
+                                v-if="
+                                    userState?.permissions.includes(
+                                        Permissions.DeleteRanks
+                                    )
+                                "
+                                :rank="rank"
+                                @success="refresh"
+                            />
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+            <div v-else class="grid place-items-center py-8">
+                <Loader text="Fetching Ranks" class="invert" />
+            </div>
+            <template #fallback>
+                <div class="grid place-items-center py-8">
+                    <Loader text="Fetching Ranks" class="invert" />
+                </div>
+            </template>
+        </ClientOnly>
     </Card>
 </template>
 
@@ -46,17 +87,9 @@ import {
 } from "@/components/ui/table";
 import type { APIResponse } from "~/server/types/api";
 import { Permissions } from "~/utils";
-const userState = useAuth();
-const showCreate = ref(false);
-if (
-    import.meta.client &&
-    userState.value &&
-    userState.value.permissions.includes(Permissions.CreateRanks)
-) {
-    showCreate.value = true;
-}
+const { userState } = useAuth();
 
-const { data, error, execute, refresh } = await useFetch<APIResponse<Rank[]>>(
+const { data, status, refresh } = await useFetch<APIResponse<Rank[]>>(
     "/api/ranks",
     { method: "POST" }
 );
@@ -70,6 +103,12 @@ if (data.value) {
             break;
     }
 }
+watch(
+    () => status.value,
+    () => {
+        console.log(status.value);
+    }
+);
 </script>
 
 <style></style>

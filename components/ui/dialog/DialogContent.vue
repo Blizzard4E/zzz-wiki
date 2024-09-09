@@ -40,7 +40,9 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
             <DialogClose
                 class="absolute right-4 top-4 transition-opacity disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
             >
-                <Button size="icon"><X class="w-6 h-6" /> </Button>
+                <Button variant="dialog" size="dialog"
+                    ><X class="w-6 h-6" stroke-width="5" />
+                </Button>
             </DialogClose>
         </DialogContent>
     </DialogPortal>

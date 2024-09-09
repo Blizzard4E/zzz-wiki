@@ -30,7 +30,7 @@
                     </div>
 
                     <Button class="w-full" type="submit" :disabled="pending">
-                        <span v-if="pending">Logging in...</span>
+                        <span v-if="pending"><Loader text="Logging in" /></span>
                         <span v-else>Login</span></Button
                     >
                 </form>
@@ -45,7 +45,7 @@ import type { APIResponse } from "~/server/types/api";
 import type { LoginRequest } from "~/server/types/request";
 const email = ref("zzz@gmail.com");
 const password = ref("zzz");
-const userState = useAuth();
+const { userState } = useAuth();
 const errorMessage = ref();
 const pending = ref(false);
 const login = async () => {

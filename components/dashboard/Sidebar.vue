@@ -77,23 +77,29 @@
                         <span class="text-zyellow">{{ userState?.name }}</span>
                     </h2>
                 </client-only>
-                <Button class="w-full" @click="logout">Logout</Button>
+                <Button class="w-full" @click="logout">
+                    <Loader v-if="logOutPending" />
+                    <span v-else>Logout</span>
+                </Button>
             </div>
         </Card>
     </aside>
 </template>
 
 <script lang="ts" setup>
-const userState = useAuth();
+const { userState } = useAuth();
 const router = useRouter();
+const logOutPending = ref(false);
 
 const logout = async () => {
+    logOutPending.value = true;
     const response = await $fetch("/api/logout", {
         method: "POST",
     });
-    console.log("logout button", response);
     if (response.status == 200) {
         userState.value = null;
+        logOutPending.value = false;
+        navigateTo("/");
     }
 };
 </script>

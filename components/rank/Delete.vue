@@ -1,33 +1,49 @@
 <template>
     <Dialog v-model:open="isOpen">
-        <DialogTrigger><Button>Create Rank</Button></DialogTrigger>
+        <DialogTrigger><Button>Delete</Button></DialogTrigger>
         <DialogContent>
             <DialogHeader>
-                <DialogTitle>Create Rank</DialogTitle>
+                <DialogTitle>Delete Rank</DialogTitle>
                 <DialogDescription
-                    >Create rank to use for agents, bangboos, and
+                    >Delete rank to use for agents, bangboos, and
                     w-engines.</DialogDescription
                 >
             </DialogHeader>
-            <form @submit.prevent="createRank" class="grid gap-4">
-                <Input placeholder="Rank Name" v-model="rankName" type="text" />
+            <form class="grid gap-4">
+                <Input
+                    placeholder="Rank Name"
+                    v-model="rankName"
+                    type="text"
+                    disabled
+                />
                 <ErrorMessage v-if="errorMessage">{{
                     errorMessage
                 }}</ErrorMessage>
             </form>
             <div class="flex justify-between mt-4">
                 <DialogClose>
-                    <Button>Close</Button>
+                    <Button type="button">Close</Button>
                 </DialogClose>
-                <Button @click="createRank" :disabled="pending">
-                    <span v-if="pending">Creating...</span>
-                    <span v-else>Create</span>
+                <Button
+                    @click="deleteRank"
+                    :disabled="pending"
+                    variant="danger"
+                    type="submit"
+                >
+                    <span v-if="pending"
+                        ><Loader text="Deleting" class="invert"
+                    /></span>
+                    <span v-else>Delete</span>
                 </Button>
             </div>
         </DialogContent>
     </Dialog>
 </template>
 <script setup lang="ts">
+const props = defineProps<{
+    rank: Rank;
+}>();
+
 import {
     Dialog,
     DialogContent,
@@ -37,27 +53,24 @@ import {
 } from "@/components/ui/dialog";
 
 const isOpen = ref();
-const rankName = ref();
+const rankName = ref(props.rank.name);
 const errorMessage = ref();
 const pending = ref(false);
 const { userState } = useAuth();
 const emit = defineEmits(["success"]);
-const createRank = async () => {
+const deleteRank = async () => {
     pending.value = true;
-    const response = await $fetch("/api/ranks/create", {
-        method: "POST",
-        body: {
-            name: rankName.value,
-        },
+    const response = await $fetch(`/api/ranks/delete/${props.rank.id}`, {
+        method: "DELETE",
     });
     pending.value = false;
     switch (response.status) {
-        case 201:
+        case 200:
             errorMessage.value = undefined;
-            rankName.value = undefined;
             pending.value = false;
             isOpen.value = false;
             emit("success");
+
             break;
         case 401:
             userState.value = null;
@@ -67,12 +80,11 @@ const createRank = async () => {
             break;
         default:
             //errorMessage.value = response.message;
-            errorMessage.value = "Unable to create rank.";
+            errorMessage.value = "Unable to delete rank.";
     }
 };
 watch(isOpen, async () => {
     if (!isOpen.value) {
-        rankName.value = undefined;
         errorMessage.value = undefined;
     }
 });
