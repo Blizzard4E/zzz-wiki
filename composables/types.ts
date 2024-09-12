@@ -32,6 +32,8 @@ export type Attribute = {
 export type Specialty = {
     id: number;
     name: string;
+    updated_at: string;
+    created_at: string;
 };
 
 export type Faction = {

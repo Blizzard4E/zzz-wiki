@@ -103,12 +103,6 @@ if (data.value) {
             break;
     }
 }
-watch(
-    () => status.value,
-    () => {
-        console.log(status.value);
-    }
-);
 </script>
 
 <style></style>

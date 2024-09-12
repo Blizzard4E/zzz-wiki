@@ -3,14 +3,17 @@
         <DialogTrigger><Button>Edit</Button></DialogTrigger>
         <DialogContent>
             <DialogHeader>
-                <DialogTitle>Edit Rank</DialogTitle>
+                <DialogTitle>Edit Specialty</DialogTitle>
                 <DialogDescription
-                    >Edit rank to use for agents, bangboos, and
-                    w-engines.</DialogDescription
+                    >Edit specialty to use for agents.</DialogDescription
                 >
             </DialogHeader>
-            <form @submit.prevent="editRank" class="grid gap-4">
-                <Input placeholder="Rank Name" v-model="rankName" type="text" />
+            <form @submit.prevent="editSpecialty" class="grid gap-4">
+                <Input
+                    placeholder="Specialty Name"
+                    v-model="specialtyName"
+                    type="text"
+                />
                 <ErrorMessage v-if="errorMessage">{{
                     errorMessage
                 }}</ErrorMessage>
@@ -18,7 +21,11 @@
                     <DialogClose>
                         <Button type="button">Close</Button>
                     </DialogClose>
-                    <Button type="submit" @click="editRank" :disabled="pending">
+                    <Button
+                        type="submit"
+                        @click="editSpecialty"
+                        :disabled="pending"
+                    >
                         <span v-if="pending">Editing...</span>
                         <span v-else>Edit</span>
                     </Button>
@@ -29,7 +36,7 @@
 </template>
 <script setup lang="ts">
 const props = defineProps<{
-    rank: Rank;
+    specialty: Specialty;
 }>();
 
 import {
@@ -41,25 +48,28 @@ import {
 } from "@/components/ui/dialog";
 
 const isOpen = ref();
-const rankName = ref(props.rank.name);
+const specialtyName = ref(props.specialty.name);
 const errorMessage = ref();
 const pending = ref(false);
 const { userState } = useAuth();
 const emit = defineEmits(["success"]);
-const editRank = async () => {
+const editSpecialty = async () => {
     pending.value = true;
-    const response = await $fetch(`/api/ranks/edit/${props.rank.id}`, {
-        method: "PATCH",
-        body: {
-            name: rankName.value,
-        },
-    });
+    const response = await $fetch(
+        `/api/specialties/edit/${props.specialty.id}`,
+        {
+            method: "PATCH",
+            body: {
+                name: specialtyName.value,
+            },
+        }
+    );
     pending.value = false;
     switch (response.status) {
         case 200:
             if (response.data) {
                 errorMessage.value = undefined;
-                rankName.value = response.data.name;
+                specialtyName.value = response.data.name;
                 pending.value = false;
                 isOpen.value = false;
                 emit("success");
@@ -74,12 +84,12 @@ const editRank = async () => {
             break;
         default:
             //errorMessage.value = response.message;
-            errorMessage.value = "Unable to edit rank.";
+            errorMessage.value = "Unable to edit specialty.";
     }
 };
 watch(isOpen, async () => {
     if (!isOpen.value) {
-        rankName.value = props.rank.name;
+        specialtyName.value = props.specialty.name;
         errorMessage.value = undefined;
     }
 });

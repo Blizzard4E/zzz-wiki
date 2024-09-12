@@ -19,23 +19,23 @@
                 <ErrorMessage v-if="errorMessage">{{
                     errorMessage
                 }}</ErrorMessage>
+                <div class="flex justify-between">
+                    <DialogClose>
+                        <Button type="button">Close</Button>
+                    </DialogClose>
+                    <Button
+                        @click="deleteRank"
+                        :disabled="pending"
+                        variant="danger"
+                        type="submit"
+                    >
+                        <span v-if="pending"
+                            ><Loader text="Deleting" class="invert"
+                        /></span>
+                        <span v-else>Delete</span>
+                    </Button>
+                </div>
             </form>
-            <div class="flex justify-between mt-4">
-                <DialogClose>
-                    <Button type="button">Close</Button>
-                </DialogClose>
-                <Button
-                    @click="deleteRank"
-                    :disabled="pending"
-                    variant="danger"
-                    type="submit"
-                >
-                    <span v-if="pending"
-                        ><Loader text="Deleting" class="invert"
-                    /></span>
-                    <span v-else>Delete</span>
-                </Button>
-            </div>
         </DialogContent>
     </Dialog>
 </template>

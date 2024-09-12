@@ -5,3 +5,6 @@ export type LoginRequest = {
 export type RankRequest = {
     name: string;
 };
+export type SpecialtyRequest = {
+    name: string;
+};

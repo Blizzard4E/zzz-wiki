@@ -14,16 +14,20 @@
                 <ErrorMessage v-if="errorMessage">{{
                     errorMessage
                 }}</ErrorMessage>
+                <div class="flex justify-between">
+                    <DialogClose>
+                        <Button type="button">Close</Button>
+                    </DialogClose>
+                    <Button
+                        type="submit"
+                        @click="createRank"
+                        :disabled="pending"
+                    >
+                        <span v-if="pending">Creating...</span>
+                        <span v-else>Create</span>
+                    </Button>
+                </div>
             </form>
-            <div class="flex justify-between mt-4">
-                <DialogClose>
-                    <Button>Close</Button>
-                </DialogClose>
-                <Button @click="createRank" :disabled="pending">
-                    <span v-if="pending">Creating...</span>
-                    <span v-else>Create</span>
-                </Button>
-            </div>
         </DialogContent>
     </Dialog>
 </template>

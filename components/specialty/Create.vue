@@ -1,16 +1,19 @@
 <template>
     <Dialog v-model:open="isOpen">
-        <DialogTrigger><Button>Edit</Button></DialogTrigger>
+        <DialogTrigger><Button>Create Specialty</Button></DialogTrigger>
         <DialogContent>
             <DialogHeader>
-                <DialogTitle>Edit Rank</DialogTitle>
+                <DialogTitle>Create Specialty</DialogTitle>
                 <DialogDescription
-                    >Edit rank to use for agents, bangboos, and
-                    w-engines.</DialogDescription
+                    >Create specialty to use for agents.</DialogDescription
                 >
             </DialogHeader>
-            <form @submit.prevent="editRank" class="grid gap-4">
-                <Input placeholder="Rank Name" v-model="rankName" type="text" />
+            <form @submit.prevent="createSpecialty" class="grid gap-4">
+                <Input
+                    placeholder="Specialty Name"
+                    v-model="specialtyName"
+                    type="text"
+                />
                 <ErrorMessage v-if="errorMessage">{{
                     errorMessage
                 }}</ErrorMessage>
@@ -18,9 +21,9 @@
                     <DialogClose>
                         <Button type="button">Close</Button>
                     </DialogClose>
-                    <Button type="submit" @click="editRank" :disabled="pending">
-                        <span v-if="pending">Editing...</span>
-                        <span v-else>Edit</span>
+                    <Button type="submit" :disabled="pending">
+                        <span v-if="pending">Creating...</span>
+                        <span v-else>Create</span>
                     </Button>
                 </div>
             </form>
@@ -28,10 +31,6 @@
     </Dialog>
 </template>
 <script setup lang="ts">
-const props = defineProps<{
-    rank: Rank;
-}>();
-
 import {
     Dialog,
     DialogContent,
@@ -41,30 +40,27 @@ import {
 } from "@/components/ui/dialog";
 
 const isOpen = ref();
-const rankName = ref(props.rank.name);
+const specialtyName = ref();
 const errorMessage = ref();
 const pending = ref(false);
 const { userState } = useAuth();
 const emit = defineEmits(["success"]);
-const editRank = async () => {
+const createSpecialty = async () => {
     pending.value = true;
-    const response = await $fetch(`/api/ranks/edit/${props.rank.id}`, {
-        method: "PATCH",
+    const response = await $fetch("/api/specialties/create", {
+        method: "POST",
         body: {
-            name: rankName.value,
+            name: specialtyName.value,
         },
     });
     pending.value = false;
     switch (response.status) {
-        case 200:
-            if (response.data) {
-                errorMessage.value = undefined;
-                rankName.value = response.data.name;
-                pending.value = false;
-                isOpen.value = false;
-                emit("success");
-            }
-
+        case 201:
+            errorMessage.value = undefined;
+            specialtyName.value = undefined;
+            pending.value = false;
+            isOpen.value = false;
+            emit("success");
             break;
         case 401:
             userState.value = null;
@@ -74,12 +70,12 @@ const editRank = async () => {
             break;
         default:
             //errorMessage.value = response.message;
-            errorMessage.value = "Unable to edit rank.";
+            errorMessage.value = "Unable to create specialty.";
     }
 };
 watch(isOpen, async () => {
     if (!isOpen.value) {
-        rankName.value = props.rank.name;
+        specialtyName.value = undefined;
         errorMessage.value = undefined;
     }
 });
