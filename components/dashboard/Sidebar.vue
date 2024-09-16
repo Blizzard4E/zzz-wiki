@@ -1,6 +1,6 @@
 <template>
     <aside class="flex-shrink-0">
-        <Card class="h-[70vh] py-2 flex flex-col justify-between">
+        <Card class="h-[85vh] py-2 flex flex-col justify-between">
             <div>
                 <div>
                     <NuxtLink

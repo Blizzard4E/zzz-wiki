@@ -14,6 +14,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
         return;
     }
+
     const sessionToken = useCookie("session_token");
     if (to.path.startsWith("/login") && sessionToken.value) {
         return navigateTo("/dashboard");

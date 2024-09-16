@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     compatibilityDate: "2024-04-03",
     devtools: { enabled: true },
-    modules: ["@nuxtjs/tailwindcss", "@tresjs/nuxt", "shadcn-nuxt"],
+    modules: ["@nuxtjs/tailwindcss", "@tresjs/nuxt", "shadcn-nuxt", "@nuxt/image"],
     css: ["~/assets/css/main.css", "~/assets/css/animations.css"],
     shadcn: {
         /**
@@ -17,5 +17,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         apiURL: "",
+        public: {
+            apiURL: "",
+        },
     },
 });

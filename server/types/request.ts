@@ -8,3 +8,7 @@ export type RankRequest = {
 export type SpecialtyRequest = {
     name: string;
 };
+export type FactionRequest = {
+    name: string;
+    description: string;
+};

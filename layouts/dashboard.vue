@@ -6,7 +6,10 @@
                 'linear-gradient(rgba(18,18,18,0.8),rgba(18,18,18,0.8)), url(https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/background_0_q1vqwp.webp)',
         }"
     >
-        <div class="flex gap-8"><DashboardSidebar /><slot /></div>
+        <div class="flex gap-8">
+            <DashboardSidebar />
+            <div class="w-full"><slot /></div>
+        </div>
     </div>
 </template>
 
