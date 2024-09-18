@@ -349,10 +349,10 @@ export const getStripeBackgroundFromAttribute = (
     attribute: Attribute
 ): string => {
     const backgroundMap: { [key: number]: string } = {
-        0: "/ui/fire_bg_stripe.png",
-        1: "/ui/electric_bg_stripe.png",
+        0: "/ui/physical_bg_stripe.png",
+        1: "/ui/fire_bg_stripe.png",
         2: "/ui/ice_bg_stripe.png",
-        3: "/ui/physical_bg_stripe.png",
+        3: "/ui/electric_bg_stripe.png",
         4: "/ui/ether_bg_stripe.png",
     };
 
@@ -361,11 +361,11 @@ export const getStripeBackgroundFromAttribute = (
 
 export const getAttributeIconFromAttribute = (attribute: Attribute): string => {
     const iconMap: { [key: number]: string } = {
-        0: "/ui/fire-attribute.png",
-        1: "/ui/electric-attribute.webp",
-        2: "/ui/ice-attribute.webp",
-        3: "/ui/physical-attribute.webp",
-        4: "/ui/ether-attribute.webp",
+        1: "/ui/physical-attribute.webp",
+        2: "/ui/fire-attribute.png",
+        3: "/ui/ice-attribute.webp",
+        4: "/ui/electric-attribute.webp",
+        5: "/ui/ether-attribute.webp",
     };
 
     return iconMap[attribute.id] || "/ui/fire-attribute.png";
