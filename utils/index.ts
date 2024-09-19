@@ -49,7 +49,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_0_v3jlgn.jpg",
         attribute: {
-            id: 0,
+            id: 2,
             name: "Fire",
         },
         faction: {
@@ -75,7 +75,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_1_xezcag.jpg",
         attribute: {
-            id: 4,
+            id: 5,
             name: "Ether",
         },
         faction: {
@@ -101,7 +101,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_2_ulvanu.jpg",
         attribute: {
-            id: 1,
+            id: 4,
             name: "Electric",
         },
         faction: {
@@ -127,7 +127,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_3_bhuzll.jpg",
         attribute: {
-            id: 2,
+            id: 3,
             name: "Ice",
         },
         faction: {
@@ -153,7 +153,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/mind_4_hmcckt.jpg",
         attribute: {
-            id: 3,
+            id: 1,
             name: "Physical",
         },
         faction: {
@@ -179,7 +179,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_0_v3jlgn.jpg",
         attribute: {
-            id: 0,
+            id: 2,
             name: "Fire",
         },
         faction: {
@@ -205,7 +205,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_1_xezcag.jpg",
         attribute: {
-            id: 4,
+            id: 5,
             name: "Ether",
         },
         faction: {
@@ -231,7 +231,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_2_ulvanu.jpg",
         attribute: {
-            id: 1,
+            id: 4,
             name: "Electric",
         },
         faction: {
@@ -257,7 +257,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511167/ZZZ/mind_3_bhuzll.jpg",
         attribute: {
-            id: 2,
+            id: 3,
             name: "Ice",
         },
         faction: {
@@ -283,7 +283,7 @@ export const fakeAgents: Agent[] = [
         mindscape:
             "https://res.cloudinary.com/duzvevuup/image/upload/v1725511168/ZZZ/mind_4_hmcckt.jpg",
         attribute: {
-            id: 3,
+            id: 1,
             name: "Physical",
         },
         faction: {
@@ -349,11 +349,11 @@ export const getStripeBackgroundFromAttribute = (
     attribute: Attribute
 ): string => {
     const backgroundMap: { [key: number]: string } = {
-        0: "/ui/physical_bg_stripe.png",
-        1: "/ui/fire_bg_stripe.png",
-        2: "/ui/ice_bg_stripe.png",
-        3: "/ui/electric_bg_stripe.png",
-        4: "/ui/ether_bg_stripe.png",
+        1: "/ui/physical_bg_stripe.png",
+        2: "/ui/fire_bg_stripe.png",
+        3: "/ui/ice_bg_stripe.png",
+        4: "/ui/electric_bg_stripe.png",
+        5: "/ui/ether_bg_stripe.png",
     };
 
     return backgroundMap[attribute.id] || "/ui/film_strip_bg.png";

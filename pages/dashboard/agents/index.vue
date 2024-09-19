@@ -125,6 +125,9 @@
                                 :factions="factionsData?.data"
                                 @success="agentsRefresh"
                             />
+                            <NuxtLink :to="`/dashboard/agents/${agent.id}`">
+                                <Button> Skills </Button>
+                            </NuxtLink>
                             <AgentDelete
                                 v-if="
                                     userState?.permissions.includes(

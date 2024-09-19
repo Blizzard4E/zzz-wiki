@@ -5,11 +5,9 @@ import { fetchToLaravel } from "~/server/utils/fetchToLaravel";
 
 export default defineEventHandler(
     async (event): Promise<APIResponse<Agent>> => {
-        const body = await readFormData(event);
         const id = getRouterParam(event, "id");
         return await fetchToLaravel<Agent>(event, `/agents/${id}`, {
-            method: "POST",
-            body,
+            method: "GET",
         });
     }
 );
