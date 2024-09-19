@@ -26,14 +26,4 @@ export default defineNuxtConfig({
             apiURL: "",
         },
     },
-    build: {
-        analyze: false,
-        optimization: {
-            splitChunks: {
-                layouts: true,
-                pages: true,
-                commons: true,
-            },
-        },
-    },
 });
