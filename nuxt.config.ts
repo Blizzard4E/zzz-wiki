@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
     compatibilityDate: "2024-04-03",
     devtools: { enabled: true },
-    modules: ["@nuxtjs/tailwindcss", "@tresjs/nuxt", "shadcn-nuxt", "@nuxt/image"],
+    modules: [
+        "@nuxtjs/tailwindcss",
+        "@tresjs/nuxt",
+        "shadcn-nuxt",
+        "@nuxt/image",
+    ],
     css: ["~/assets/css/main.css", "~/assets/css/animations.css"],
     shadcn: {
         /**
@@ -19,6 +24,16 @@ export default defineNuxtConfig({
         apiURL: "",
         public: {
             apiURL: "",
+        },
+    },
+    build: {
+        analyze: false,
+        optimization: {
+            splitChunks: {
+                layouts: true,
+                pages: true,
+                commons: true,
+            },
         },
     },
 });
