@@ -7,7 +7,7 @@ export type Agent = {
     specialty: Specialty;
     attribute: Attribute;
     faction: Faction;
-    skills: AgentSkill[];
+    agent_skills: AgentSkill[];
     updated_at: string;
     created_at: string;
 };
@@ -17,6 +17,8 @@ export type AgentSkill = {
     content: string;
     type: string;
     showcase: string;
+    updated_at: string;
+    created_at: string;
 };
 
 export type Rank = {

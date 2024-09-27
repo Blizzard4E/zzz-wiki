@@ -4,6 +4,7 @@
 
 <script lang="ts" setup>
 import { MeshLambertMaterial, MeshStandardMaterial, Texture } from "three";
+const runtimeConfig = useRuntimeConfig();
 
 const props = defineProps<{
     playlist: Playlist;
@@ -16,12 +17,27 @@ const loadPlaylist = async () => {
     displayMaterial.map = noiseTexture;
     screenVideoTextures = [];
     for (let i = 0; i < props.playlist.videos.length; i++) {
-        let screenVid = (await useVideoTexture(
-            props.playlist.videos[i].url
-        )) as Texture;
-        screenVid.flipY = false;
+        let screenVid: Texture;
+        if (props.playlist.videos[i].url) {
+            console.log(
+                runtimeConfig.public.apiURL +
+                    "/get-file/" +
+                    props.playlist.videos[i].url
+            );
+            screenVid = (await useVideoTexture(
+                runtimeConfig.public.apiURL +
+                    "/get-file/" +
+                    props.playlist.videos[i].url
+            )) as Texture;
+            screenVid.flipY = false;
+        } else {
+            console.log("Set null");
+            screenVid = noiseTexture;
+        }
+
         screenVideoTextures.push(screenVid);
     }
+    console.log(screenVideoTextures);
     if (props.playlist.videos.length > 0) playScreen();
 };
 
@@ -60,15 +76,17 @@ nodes.Cube_1.material = displayMaterial;
 nodes.Cube_2.material = effectMaterial;
 
 function playScreen() {
-    let showcaseIndex = props.playlist.videos.findIndex(
-        (video: Video) => video.id === props.selectedShowcaseId
-    );
-    const videoElement = screenVideoTextures[showcaseIndex]
-        .image as HTMLVideoElement;
-    videoElement.currentTime = 0;
-    videoElement.play();
-    console.log("Playing " + props.playlist.videos[showcaseIndex].title);
-    displayMaterial.map = screenVideoTextures[showcaseIndex];
+    if (screenVideoTextures.length > 0) {
+        let showcaseIndex = props.playlist.videos.findIndex(
+            (video: Video) => video.id === props.selectedShowcaseId
+        );
+        const videoElement = screenVideoTextures[showcaseIndex]
+            .image as HTMLVideoElement;
+        videoElement.currentTime = 0;
+        videoElement.play();
+        console.log("Playing " + props.playlist.videos[showcaseIndex].title);
+        displayMaterial.map = screenVideoTextures[showcaseIndex];
+    }
 }
 function updateModelRotation() {
     const rotationRangeX = Math.PI / 12; // 15 degrees

@@ -31,7 +31,7 @@
             </h2>
         </div>
         <img
-            :src="agent.portrait"
+            :src="`${runtimeConfig.public.apiURL}/get-file/${agent.portrait}`"
             class="absolute bottom-0 min-w-[48vw] w-[48vw] duration-300 ease-in-out z-20 animation-floating"
             :style="{
                 right: isSelected ? '-8vw' : '-15vw',
@@ -41,7 +41,7 @@
         />
         <img
             class="absolute bottom-[-5vw] left-[-5vw] min-w-[25vw] w-[25vw] grayscale duration-300 ease-in-out"
-            :src="agent.faction.icon"
+            :src="`${runtimeConfig.public.apiURL}/get-file/${agent.faction.icon}`"
             :alt="agent.faction.name + ' Icon'"
             :style="{
                 opacity: isSelected ? 0.3 : 0,
@@ -80,6 +80,7 @@ const props = defineProps<{
     selectedAgent: number | null;
     agent: Agent;
 }>();
+const runtimeConfig = useRuntimeConfig();
 const isSelected = computed(() => props.selectedAgent === props.agent.id);
 </script>
 

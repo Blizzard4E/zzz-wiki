@@ -7,7 +7,7 @@ export default defineEventHandler(
     async (event): Promise<APIResponse<Agent>> => {
         const body = await readFormData(event);
         const id = getRouterParam(event, "id");
-        return await fetchToLaravel<Agent>(event, `/agents/${id}/update`, {
+        return await fetchToLaravel<Agent>(event, `/agents/skills/${id}`, {
             method: "POST",
             body,
         });

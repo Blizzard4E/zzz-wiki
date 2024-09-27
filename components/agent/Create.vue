@@ -180,6 +180,8 @@ const createAgent = async () => {
             emit("success");
             break;
         case 401:
+            userState.value = null;
+            break;
         case 403:
             userState.value = null;
             break;

@@ -19,3 +19,10 @@ export type AgentRequest = {
     specialty_id: string;
     faction_id: string;
 };
+export type AgentSkillRequest = {
+    name: string;
+    rank_id: string;
+    attribute_id: string;
+    specialty_id: string;
+    faction_id: string;
+};

@@ -25,11 +25,13 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
+    "uuid": "^10.0.0",
     "vue": "latest"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/three": "^0.167.2"
+    "@types/three": "^0.167.2",
+    "@types/uuid": "^10.0.0"
   }
 }

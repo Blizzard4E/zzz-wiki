@@ -1,5 +1,6 @@
 <template>
     <div
+        v-if="agent"
         @mousemove="handleMouseMove"
         class="bg-zblack h-[92vh] min-w-screen text-white relative overflow-hidden"
         :style="{
@@ -12,7 +13,7 @@
         <div class="absolute top-0 left-0 z-0 animation-shaky select-none">
             <img
                 class="relative min-w-screen min-h-screen w-screen h-screen opacity-10 object-cover scale-105"
-                :src="agent.mindscape"
+                :src="`${runtimeConfig.public.apiURL}/get-file/${agent.mindscape}`"
                 :alt="agent.name + ' Mindscape'"
             />
             <div
@@ -26,7 +27,7 @@
             >
                 <img
                     class="relative min-w-screen min-h-screen w-screen h-screen opacity-20 object-cover z-10"
-                    :src="agent.mindscape"
+                    :src="`${runtimeConfig.public.apiURL}/get-file/${agent.mindscape}`"
                     :alt="agent.name + ' Mindscape'"
                 />
                 <div
@@ -40,7 +41,7 @@
         >
             <img
                 class="min-w-[1100px] w-[1100px] z-20 animation-floating"
-                :src="agent.portrait"
+                :src="`${runtimeConfig.public.apiURL}/get-file/${agent.portrait}`"
                 :alt="agent.name + ' portrait'"
             />
         </div>
@@ -68,10 +69,13 @@
             </div>
         </div>
         <!-- Agent's skill selection -->
-        <div class="absolute bottom-[5vh] left-[50%] translate-x-[-50%] z-30">
+        <div
+            class="absolute bottom-[5vh] left-[50%] translate-x-[-50%] z-30"
+            v-if="selectedSkill"
+        >
             <div class="flex gap-4 justify-center items-center select-none">
                 <button
-                    v-for="skill in agent.skills"
+                    v-for="skill in agentSkills"
                     :key="`skill-select-${skill.id}`"
                     @click="() => changeSkill(skill)"
                     class="rounded-full bg-zblack border-[3px] outline text-white duration-300 group animation-bottom-slide-in"
@@ -95,9 +99,12 @@
             </div>
         </div>
         <!-- Agent's selected skills info -->
-        <div class="animation-right-slide-in relative z-30">
+        <div
+            class="animation-right-slide-in relative z-30"
+            v-if="selectedSkill"
+        >
             <div
-                v-for="skill in agent.skills"
+                v-for="skill in agentSkills"
                 :key="`selected-skill-${skill.id}`"
                 class="absolute top-[21.5vh] right-[5vw] w-[460px] z-30 translate-x-[150%]"
                 :class="
@@ -117,13 +124,13 @@
                     <h4 class="text-xl">{{ skill.type }}</h4>
                 </div>
                 <div
-                    class="mt-8 flex flex-col gap-8 rounded-lg p-4 items-center bg-zblack border-[3px] border-zgray outline outline-[3px] outline-zblack text-white duration-300 ease-in-out max-h-[500px] overflow-auto scroll-bar"
+                    class="mt-8 flex flex-col gap-8 rounded-lg p-4 bg-zblack border-[3px] border-zgray outline outline-[3px] outline-zblack text-white duration-300 ease-in-out max-h-[500px] overflow-auto scroll-bar"
                     v-html="formatSkillContent(skill.content)"
                 ></div>
             </div>
         </div>
         <!-- 3D TV skill showcase -->
-        <TresCanvas window-size alpha class="z-10">
+        <TresCanvas window-size alpha class="z-10" v-if="selectedSkill">
             <TresPerspectiveCamera
                 :args="[80, 1, 0.1, 1000]"
                 :position="[0, 0.2, 3.25]"
@@ -143,10 +150,14 @@
 </template>
 
 <script lang="ts" setup>
+import type { APIResponse } from "~/server/types/api";
+
 const route = useRoute();
-let agent = fakeAgents[Number(route.params.id)];
-const agentPlaylist = agentSkillsToPlaylist(agent);
-const selectedSkill = ref(agent.skills[0]);
+const agent = ref<Agent>();
+const agentPlaylist = ref();
+const selectedSkill = ref();
+const runtimeConfig = useRuntimeConfig();
+
 const mousePosition = reactive({
     x: 0,
     y: 0,
@@ -159,6 +170,17 @@ const changeSkill = (skill: AgentSkill) => {
     if (selectedSkill.value == skill) return;
     selectedSkill.value = skill;
 };
+console.log(`${runtimeConfig.public.apiURL}/agents/${route.params.id}`);
+const agentSkills = ref<AgentSkill[]>([]);
+const { data, status, refresh } = await useFetch<APIResponse<Agent>>(
+    `${runtimeConfig.public.apiURL}/agents/${route.params.id}`
+);
+agent.value = data.value?.data;
+if (agent.value && agent.value.agent_skills.length > 0) {
+    agentSkills.value = combineAgentSkills(agent.value.agent_skills);
+    selectedSkill.value = agentSkills.value[0];
+    agentPlaylist.value = agentSkillsToPlaylist(agentSkills.value);
+}
 </script>
 
 <style></style>

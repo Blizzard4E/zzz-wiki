@@ -6,10 +6,10 @@
             class="flex-grow outline-black outline-[0.5vw] bg-black relative z-0 flex duration-300 ease-in-out"
         >
             <AgentFrame
-                v-for="(element, index) in agentsAmount"
+                v-for="(agent, index) in agentsData?.data"
                 :key="index"
                 :selectedAgent="selectedAgent"
-                :agent="fakeAgents[index]"
+                :agent="agent"
                 @select-agent="(id: number) => selectAgent(id, index)"
             />
         </div>
@@ -18,20 +18,37 @@
 </template>
 
 <script lang="ts" setup>
-const agentsAmount = 10;
+import type { APIResponse } from "~/server/types/api";
+
 const agentCarousel = ref<HTMLDivElement | null>(null);
 const selectedAgent = ref<number | null>(null);
+const runtimeConfig = useRuntimeConfig();
+
+const {
+    data: agentsData,
+    status: agentsStatus,
+    refresh: agentsRefresh,
+} = await useFetch<APIResponse<Agent[]>>(
+    `${runtimeConfig.public.apiURL}/agents`
+);
+if (agentsData.value) {
+    switch (agentsData.value.status) {
+        case 200:
+            break;
+    }
+}
 
 const selectAgent = (id: number, pos: number) => {
+    if (!agentsData.value?.data) return;
     let posToMoveTo = 0;
     if (!agentCarousel.value) return;
     if (selectedAgent.value == id) {
         selectedAgent.value = null;
-        if (pos == agentsAmount - 1) {
+        if (pos == agentsData.value?.data?.length - 1) {
             posToMoveTo = -pos + 4;
-        } else if (pos == agentsAmount - 2) {
+        } else if (pos == agentsData.value?.data?.length - 2) {
             posToMoveTo = -pos + 3;
-        } else if (pos == agentsAmount - 3) {
+        } else if (pos == agentsData.value?.data?.length - 3) {
             posToMoveTo = -pos + 2;
         } else if (pos > 1) {
             posToMoveTo = -pos + 2;
@@ -42,7 +59,7 @@ const selectAgent = (id: number, pos: number) => {
     }
     selectedAgent.value = id;
 
-    if (pos == agentsAmount - 1) {
+    if (pos == agentsData.value?.data?.length - 1) {
         posToMoveTo = -pos + 2;
     } else if (pos > 1) {
         posToMoveTo = -pos + 1;
